@@ -232,6 +232,68 @@
 
 <script>
 const DATA = {
+  "Grand Highlander": { year: 2026, byCode: true, EXT: { "01H5":"Cement", "01J9":"Celestial Silver Metallic", "01L6":"Storm Cloud", "0218":"Midnight Black Metallic", "08X8":"Blueprint", "01L5":"Heavy Metal*", "03T3":"Ruby Flare Pearl*", "0089":"Wind Chill Pearl*" }, INT: { "FB20":"Black Fabric w/Smoke Silver", "FB10":"Light Gray/Moonstone Fabric", "EA20":"Black SofTex", "EA10":"Light Gray SofTex", "LC20":"Black Leather", "LC10":"Light Gray Leather", "LB20":"Black Leather", "LB10":"Light Gray Leather", "LB40":"Portobello Leather", "LA20":"Black Leather & Ultrasuede", "LA10":"Light Gray Leather & Ultrasuede", "LA40":"Portobello Leather & Ultrasuede", "LD20":"Black Leather" },
+    extBy: {"01L5": [6710, 6704, 6712, 6724, 6730, 6732], "01H5": [6732, 6730, 6733], "01J9": [6702, 6708, 6716, 6722, 6706, 6700, 6720], "01L6": [6702, 6708, 6710, 6704, 6712, 6730, 6732, 6724, 6716, 6722, 6706, 6700, 6720], "0089": [6702, 6708, 6710, 6704, 6712, 6732, 6730, 6724, 6716, 6722, 6706, 6700, 6720, 6733], "03T3": [6702, 6708, 6710, 6704, 6712, 6730, 6732, 6724, 6716, 6722, 6706, 6700, 6720], "0218": [6702, 6708, 6710, 6704, 6712, 6732, 6730, 6724, 6716, 6722, 6706, 6700, 6720, 6733], "08X8": [6710, 6704, 6702, 6708, 6712, 6730, 6732, 6724, 6716, 6722, 6706, 6700, 6720]},
+    intBy: {"LB10": [6712], "LD20": [6733], "LB40": [6712], "LA20": [6730, 6732], "LA10": [6730, 6732], "FB20": [6706, 6700, 6720], "LB20": [6712], "LA40": [6732], "LC20": [6710, 6704, 6724], "FB10": [6706, 6700, 6720], "EA20": [6702, 6708, 6716, 6722], "LC10": [6710, 6704, 6724], "EA10": [6702, 6708, 6716, 6722]},
+    PC: {"01L5": "$475", "03T3": "$475", "0089": "$475"},
+    trims: {
+    "LE": { codes: ["6700 · LE FWD","6706 · LE AWD","6720 · Hybrid LE AWD"], fio: [
+ ] },
+    "XLE": { codes: ["6702 · XLE FWD","6708 · XLE AWD","6716 · Hybrid XLE FWD","6722 · Hybrid XLE AWD"], fio: [
+      ["BS","Bench seat — 8-passenger, 60/40 second row (no charge)","$0",[6702,6708,6716,6722]],
+      ["SR","Panoramic moonroof","$1,350",[6702,6708,6716,6722]] ] },
+    "Limited": { codes: ["6704 · Limited FWD","6710 · Limited AWD","6724 · Hybrid Limited AWD","6730 · Hybrid MAX Limited AWD"], fio: [
+      ["BS","Bench seat — 8-passenger, 60/40 second row (no charge)","$0",[6704,6710,6724]],
+      ["SR","Panoramic moonroof","$1,350",[6704,6710,6724,6730]],
+      ["SB","Panoramic View Monitor — 360° overhead view","$600",[6704,6710,6724,6730]] ] },
+    "Nightshade": { codes: ["6733 · Hybrid Nightshade AWD"], fio: [
+      ["SR","Panoramic moonroof","$1,350",[6733]],
+      ["SB","Panoramic View Monitor — 360° overhead view","$600",[6733]] ] },
+    "Platinum": { codes: ["6712 · Platinum AWD","6732 · Hybrid MAX Platinum AWD"], fio: [
+ ] }
+  }},
+  "bZ": { year: 2027, byCode: true, EXT: { "08X8":"Blueprint", "0218":"Midnight Black Metallic", "01L5":"Heavy Metal*", "03U5":"Supersonic Red*", "0089":"Wind Chill Pearl*", "02PS":"Wind Chill/Black roof*", "02YJ":"Heavy Metal/Black roof*", "02SC":"Supersonic Red/Black roof*" }, INT: { "EB20":"Black SofTex/Fabric", "EA20":"Black SofTex", "EA10":"Light Gray SofTex" },
+    extBy: {"02PS": [2880, 2882], "0089": [2870, 2872, 2873, 2880, 2882], "03U5": [2870, 2872, 2873, 2880, 2882], "08X8": [2870, 2872, 2873, 2880, 2882], "0218": [2870, 2872, 2873, 2880, 2882], "02YJ": [2880, 2882], "01L5": [2870, 2872, 2873, 2880, 2882], "02SC": [2880, 2882]},
+    intBy: {"EA10": [2880, 2882], "EA20": [2880, 2882], "EB20": [2870, 2872, 2873]},
+    PC: {"01L5": "$475", "03U5": "$475", "0089": "$475", "02PS": "$975", "02YJ": "$975", "02SC": "$975"},
+    trims: {
+    "XLE": { codes: ["2873 · XLE FWD","2870 · XLE FWD Plus","2872 · XLE AWD"], fio: [
+      ["PR","Panoramic fixed-glass roof w/ power sunshade","$1,000",[2870,2872,2873]] ] },
+    "Limited": { codes: ["2880 · Limited FWD","2882 · Limited AWD"], fio: [
+      ["EN","JBL Premium Audio — 9 speakers, subwoofer","$580",[2880,2882]] ] }
+  }},
+  "bZ Woodland": { year: 2027, byCode: true, EXT: { "0D35":"Stepping Stone", "0D32":"Raven", "0D31":"Pavement", "0D30":"Steel", "0D33":"Trueno Blue", "0D29":"Halo*" }, INT: { "EA20":"Black SofTex", "EA60":"Stone Brown SofTex" },
+    extBy: {"0D35": [2860, 2861], "0D32": [2860, 2861], "0D29": [2860, 2861], "0D31": [2860, 2861], "0D30": [2860, 2861], "0D33": [2860, 2861]},
+    intBy: {"EA60": [2860, 2861], "EA20": [2860, 2861]},
+    PC: {"0D29": "$475"},
+    trims: {
+    "Woodland": { codes: ["2860 · Woodland AWD"], fio: [
+      ["TA","All-terrain tires 235/65R18 (no charge)","$0",[2860]] ] },
+    "Woodland Premium": { codes: ["2861 · Woodland Premium AWD"], fio: [
+      ["TA","All-terrain tires 235/65R18 (no charge)","$0",[2861]] ] }
+  }},
+  "C-HR": { year: 2027, byCode: true, EXT: { "06Y1":"Overcast", "04Z3":"Tandoori", "01H5":"Cement", "0218":"Midnight Black Metallic", "0089":"Wind Chill Pearl*", "0M67":"Tandoori/Black roof*", "02YY":"Cement/Black roof*", "02PS":"Wind Chill/Black roof*" }, INT: { "EB20":"Black SofTex/Fabric", "EA20":"Black Synthetic Suede/SofTex", "EC10":"Boulder Synthetic Suede/SofTex" },
+    extBy: {"0M67": [2419], "02YY": [2419], "06Y1": [2416, 2419], "02PS": [2419], "04Z3": [2416, 2419], "01H5": [2416, 2419], "0089": [2416, 2419], "0218": [2416, 2419]},
+    intBy: {"EB20": [2416], "EC10": [2419], "EA20": [2419]},
+    PC: {"0089": "$475", "0M67": "$500", "02YY": "$500", "02PS": "$975"},
+    trims: {
+    "SE": { codes: ["2416 · SE AWD"], fio: [
+      ["CY","Headlight cleaner","$100",[2416]] ] },
+    "XSE": { codes: ["2419 · XSE AWD"], fio: [
+      ["CY","Cold Weather Package — headlight cleaner, heated rear seats","$450",[2419]],
+      ["EN","JBL Premium Audio — 9 speakers, subwoofer","$600",[2419]],
+      ["SR","Panoramic fixed-glass roof w/ power sunshade","$1,000",[2419]] ] }
+  }},
+  "Corolla Hatchback": { year: 2027, byCode: true, EXT: { "0040":"Ice Cap", "01F7":"Classic Silver Metallic", "01G3":"Magnetic Gray Metallic", "0229":"Inked", "04Y8":"Inferno", "08X8":"Blueprint", "03U9":"Finish Line Red*", "0089":"Wind Chill Pearl*", "0M71":"Wind Chill/Black roof*", "02ZR":"Finish Line Red/Black roof*", "0MA0":"Classic Silver/Black roof*", "0MA1":"Magnetic Gray/Black roof*", "0MA2":"Blueprint/Black roof*" }, INT: { "FA20":"Black Fabric", "FA10":"Moonstone Fabric", "LA20":"Black SofTex", "LA10":"Moonstone SofTex" },
+    extBy: {"04Y8": [6272, 6274], "0229": [6272, 6274], "0040": [6272, 6274], "0089": [6272, 6274], "01F7": [6272, 6274], "01G3": [6272, 6274], "03U9": [6272, 6274], "08X8": [6272, 6274], "0M71": [6272, 6274], "0MA0": [6272, 6274], "0MA1": [6272, 6274], "02ZR": [6272, 6274], "0MA2": [6272, 6274]},
+    intBy: {"LA20": [6274], "FA10": [6272], "FA20": [6272], "LA10": [6274]},
+    PC: {"03U9": "$475", "0089": "$475", "0M71": "$975", "02ZR": "$975", "0MA0": "$500", "0MA1": "$500", "0MA2": "$500"},
+    trims: {
+    "SE": { codes: ["6272 · SE FWD"], fio: [
+      ["SE","SE Premium Package — 12.3-in. cluster, 10.5-in. multimedia","$800",[6272]] ] },
+    "XSE": { codes: ["6274 · XSE FWD"], fio: [
+ ] }
+  }},
   "Camry": { year: 2027, byCode: true, EXT: { "0040":"Ice Cap", "01J9":"Celestial Silver Metallic", "01L7":"Underground", "0218":"Midnight Black Metallic", "0795":"Ocean Gem", "08Q4":"Reservoir Blue", "03U5":"Supersonic Red*", "08Z3":"Dark Cosmos*", "01L5":"Heavy Metal*", "0089":"Wind Chill Pearl*", "02YJ":"Heavy Metal/Black roof*", "02PS":"Wind Chill/Black roof*", "0M04":"Ocean Gem/Black roof*", "02SC":"Supersonic Red/Black roof*" }, INT: { "FA20":"Black Fabric", "FA10":"Boulder Fabric", "EA20":"Black SofTex/Fabric", "EA10":"Boulder SofTex/Fabric", "LA20":"Black Leather & Dinamica", "LA10":"Light Gray Leather & Dinamica", "LB20":"Black Leather", "LB30":"Cockpit Red Leather" },
     extBy: {"03U5": [2560, 2555, 2561, 2553, 2557, 2556, 2552, 2559, 2551, 2558], "08Z3": [2560, 2555, 2561, 2553, 2557, 2556], "0795": [2560, 2555, 2561, 2553, 2557, 2556, 2552, 2559], "08Q4": [2560, 2555, 2561, 2553, 2557, 2556, 2552, 2559], "0218": [2560, 2555, 2561, 2553, 2557, 2556, 2552, 2559, 2551, 2558], "01L7": [2560, 2555, 2561, 2553, 2557, 2556, 2552, 2559], "01L5": [2560, 2555, 2561, 2553, 2557, 2556], "01J9": [2552, 2559], "0040": [2561, 2553, 2552, 2559, 2551, 2558], "0089": [2560, 2555, 2557, 2556], "02YJ": [2557, 2556], "02PS": [2557, 2556], "0M04": [2557, 2556], "02SC": [2557, 2556]},
     intBy: {"LB30": [2557, 2556], "EA20": [2561, 2553, 2551, 2558], "LB20": [2557, 2556], "FA20": [2552, 2559], "LA10": [2560, 2555], "LA20": [2560, 2555], "FA10": [2552, 2559], "EA10": [2561, 2553]},
@@ -575,13 +637,13 @@ const ROWS = 6;
 const cells = '<td class="c"><span class="box must"></span></td><td class="c"><span class="box flex"></span></td><td class="c"><span class="box no"></span></td>';
 const mSel = document.getElementById('model'), tSel = document.getElementById('trim'), cSel = document.getElementById('code');
 mSel.add(new Option('Select model',''));
-['4Runner','Camry','Corolla','Prius','Prius Plug-in Hybrid','RAV4','RAV4 Plug-in Hybrid','Sienna','Tacoma','Tundra'].forEach(function(m){ if(DATA[m]) mSel.add(new Option(m, m)); });
+['4Runner','bZ','bZ Woodland','C-HR','Camry','Corolla','Corolla Hatchback','Grand Highlander','Prius','Prius Plug-in Hybrid','RAV4','RAV4 Plug-in Hybrid','Sienna','Tacoma','Tundra'].forEach(function(m){ if(DATA[m]) mSel.add(new Option(m, m)); });
 function wire(){
   Array.prototype.forEach.call(document.querySelectorAll('.line:not(#today):not(#vyear):not(#vmodel):not(#vtrim):not(#vcode), td.w'), function(el){ el.setAttribute('contenteditable','true'); });
   Array.prototype.forEach.call(document.querySelectorAll('.box'), function(b){ if(!b.dataset.w){ b.dataset.w=1; b.addEventListener('click',function(){ if(b.classList.contains('dis')||b.classList.contains('lock')) return; b.classList.toggle('on'); b.textContent = b.classList.contains('on') ? '\u2713' : ''; applyIncludes(); applyNo(); fillDealer(); }); } });
 }
 (function(){ var d=new Date(); document.getElementById('today').textContent=(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear(); })();
-const PCCOLORS = {"01L5":1,"03T3":1,"0089":1,"03U5":1,"0M73":1,"0796":1,"0M22":1,"02SQ":1,"02VP":1,"02TB":1,"08Z3":1,"02YJ":1,"02PS":1,"0M04":1,"02SC":1,"0M93":1,"0MA3":1,"0MA4":1,"0MA5":1,"0MA6":1,"0M87":1,"0MA7":1};
+const PCCOLORS = {"01L5":1,"03T3":1,"0089":1,"03U5":1,"0M73":1,"0796":1,"0M22":1,"02SQ":1,"02VP":1,"02TB":1,"08Z3":1,"02YJ":1,"02PS":1,"0M04":1,"02SC":1,"0M93":1,"0MA3":1,"0MA4":1,"0MA5":1,"0MA6":1,"0M87":1,"0MA7":1,"0D29":1,"0M67":1,"02YY":1,"03U9":1,"0M71":1,"02ZR":1,"0MA0":1,"0MA1":1,"0MA2":1};
 function setBox(b,on){ b.classList.toggle('on',on); b.textContent = on ? '\u2713' : ''; }
 function fillDealer(){
   var mc = (cSel.value||'').split(' ')[0];
