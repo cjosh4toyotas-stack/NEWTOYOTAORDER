@@ -98,6 +98,7 @@
   td.c{width:64px}
   th.must,th.flex,th.no{white-space:nowrap;width:70px}
   .box.lock{pointer-events:none}
+  td.c .inc{color:#1B8A3C;font-size:8.5pt;font-weight:bold;white-space:nowrap}
   .box.dis{border-color:#BBB;color:#BBB;pointer-events:none;background:#F4F4F4}
 </style>
 </head>
@@ -219,6 +220,7 @@ const DATA = {
     extBy: {"0M73": [7598], "02MQ": [7598], "02ZW": [7598], "06X1": [7542, 7543, 7566, 7172, 7148, 7545, 7568, 7544, 7582, 7536, 7538, 7530, 7532, 7534], "0040": [7186, 7162, 7514, 7547, 7594, 7570, 7170, 7540, 7146, 7126, 7558, 7166, 7542, 7543, 7566, 7172, 7148, 7545, 7568, 7544, 7536, 7538, 7530, 7532], "01J9": [7186, 7162, 7514, 7547, 7594, 7570, 7170, 7540, 7146, 7126, 7558, 7166, 7542, 7543, 7566, 7172, 7148, 7545, 7568, 7544, 7582, 7536, 7538, 7530, 7532, 7534], "01L7": [7186, 7162, 7514, 7547, 7594, 7570, 7170, 7540, 7146, 7126, 7558, 7166, 7542, 7543, 7566, 7172, 7148, 7545, 7568, 7544, 7582, 7536, 7538, 7530, 7532, 7534], "0202": [7186, 7162, 7514, 7547, 7594, 7570, 7170, 7540, 7146, 7126, 7558, 7166, 7542, 7543, 7566, 7172, 7148, 7545, 7568, 7544, 7582, 7536, 7538, 7598, 7530, 7532, 7534], "04Z2": [7542, 7543, 7566, 7172, 7148, 7545, 7568, 7544, 7530, 7532, 7166], "03U5": [7186, 7162, 7514, 7547, 7594, 7570, 7170, 7540, 7146, 7126, 7558, 7542, 7543, 7566, 7172, 7148, 7545, 7568, 7544, 7582, 7530, 7532, 7534, 7166], "08X0": [7570, 7170, 7540, 7146, 7542, 7543, 7566, 7172, 7148, 7545, 7568, 7544, 7582, 7530, 7532, 7534], "0089": [7542, 7543, 7566, 7172, 7148, 7582, 7530, 7534]},
     intBy: {"FC11": [7166], "FB20": [7126, 7558], "EB20": [7534, 7582], "FA20": [7186, 7162, 7514, 7547, 7594], "FC12": [7166], "FE11": [7542, 7543, 7566, 7172, 7148, 7530], "EA20": [7530, 7532, 7542, 7543, 7566, 7172, 7148, 7545, 7568, 7544], "ED22": [7598], "ED30": [7598], "FD12": [7532, 7545, 7568, 7544], "EC60": [7536, 7538], "EB10": [7534, 7582], "FD11": [7532, 7545, 7568, 7544], "FE12": [7542, 7543, 7566, 7172, 7148, 7530], "FF10": [7570, 7170, 7540, 7146], "FF20": [7570, 7170, 7540, 7146]},
     PC: {"03U5":"$475","0089":"$475","0M73":"$695"},
+    INCLUDES: {"OF":["CY","MR","EE","EF"],"PQ":["CY","MR","EE","EF"],"OU":["CY"],"PU":["CY"],"SP":["CY"]},
     trims: {
     "SR": { codes: ["7162 · XtraCab 6-ft 4x2 AT","7186 · Double Cab 5-ft 4x2 AT","7514 · XtraCab 6-ft 4x4 AT","7547 · Double Cab 5-ft 4x4 MT","7594 · Double Cab 5-ft 4x4 AT"], fio: [
       ["LL","SR Upgrade Package — BSM, parking assist, LED bed lights, Digital Key, full-size spare","$1,495",[7186,7594]],
@@ -310,11 +312,24 @@ mSel.add(new Option('Select model',''));
 Object.keys(DATA).forEach(function(m){ mSel.add(new Option(m, m)); });
 function wire(){
   Array.prototype.forEach.call(document.querySelectorAll('.line:not(#today):not(#vyear):not(#vmodel):not(#vtrim):not(#vcode), td.w'), function(el){ el.setAttribute('contenteditable','true'); });
-  Array.prototype.forEach.call(document.querySelectorAll('.box'), function(b){ if(!b.dataset.w){ b.dataset.w=1; b.addEventListener('click',function(){ if(b.classList.contains('dis')||b.classList.contains('lock')) return; b.classList.toggle('on'); b.textContent = b.classList.contains('on') ? '\u2713' : ''; }); } });
+  Array.prototype.forEach.call(document.querySelectorAll('.box'), function(b){ if(!b.dataset.w){ b.dataset.w=1; b.addEventListener('click',function(){ if(b.classList.contains('dis')||b.classList.contains('lock')) return; b.classList.toggle('on'); b.textContent = b.classList.contains('on') ? '\u2713' : ''; applyIncludes(); }); } });
 }
 (function(){ var d=new Date(); document.getElementById('today').textContent=(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear(); })();
 const PCCOLORS = {"01L5":1,"03T3":1,"0089":1,"03U5":1,"0M73":1};
 function setBox(b,on){ b.classList.toggle('on',on); b.textContent = on ? '\u2713' : ''; }
+function applyIncludes(){
+  var m = mSel.value ? DATA[mSel.value] : null; if(!m || !m.INCLUDES) return;
+  var rows = Array.prototype.slice.call(document.querySelectorAll('#fio tr'));
+  var byCode = {}; rows.forEach(function(tr){ var c=tr.querySelector('td.code'); if(c && c.textContent.trim()) byCode[c.textContent.trim()] = tr; });
+  var included = {};
+  Object.keys(m.INCLUDES).forEach(function(pkg){ var tr=byCode[pkg]; if(!tr) return; var bx=tr.querySelectorAll('.box');
+    if(bx[0].classList.contains('on') || bx[1].classList.contains('on')) m.INCLUDES[pkg].forEach(function(o){ included[o]=pkg; }); });
+  rows.forEach(function(tr){ var c=tr.querySelector('td.code'); if(!c) return; var code=c.textContent.trim(); var cells=tr.querySelectorAll('td.c'); if(!cells.length) return;
+    var isInc = !!included[code];
+    if(isInc){ if(!tr.dataset.inc){ tr.dataset.inc='1'; Array.prototype.forEach.call(cells,function(td,i){ td.dataset.html=td.innerHTML; td.innerHTML = i===1 ? '<span class="inc">Included in '+included[code]+'</span>' : ''; }); } }
+    else if(tr.dataset.inc){ delete tr.dataset.inc; Array.prototype.forEach.call(cells,function(td){ td.innerHTML=td.dataset.html; }); wire(); }
+  });
+}
 function applyPC(){
   var pcRow=null;
   Array.prototype.forEach.call(document.querySelectorAll('#fio tr'), function(tr){ var c=tr.querySelector('td.code'); if(c && c.textContent.trim()==='PC') pcRow=tr; });
