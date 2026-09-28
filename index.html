@@ -106,6 +106,16 @@
   #fio.compact td.w{height:19px}
   #fio.compact .box{width:11px;height:11px}
   @media print{ .page{page-break-inside:auto} #fio tr{page-break-inside:avoid} }
+  .f.vf{flex:1 1 auto;min-width:0}
+  .f.vf .line{white-space:nowrap;min-width:40px;padding-right:6px}
+  .seg span{min-width:0}
+  select.cs{min-width:0;width:0;flex:1 1 0}
+  .seg b{min-width:0}
+  td.lbl{padding-right:10px}
+  td.w.fill{font-size:10pt}
+  th.must,th.flex,th.no{width:68px;letter-spacing:0;font-size:8pt}
+  td.c{width:68px}
+  td.price,th:nth-child(5){width:68px}
 </style>
 </head>
 <body>
@@ -138,10 +148,10 @@
 
   <h2>Vehicle</h2>
   <div class="row" style="margin-bottom:4px">
-    <div class="f" style="flex:0 0 90px"><label>Year</label><div class="line" id="vyear"></div></div>
-    <div class="f" style="flex:1 1 120px;min-width:0"><label>Model</label><div class="line" id="vmodel" style="white-space:nowrap"></div></div>
-    <div class="f" style="flex:1 1 140px;min-width:0"><label>Trim</label><div class="line" id="vtrim" style="white-space:nowrap;min-width:0"></div></div>
-    <div class="f" style="flex:1.6 1 200px;min-width:0"><label>Model code</label><div class="line" id="vcode" style="white-space:nowrap"></div></div>
+    <div class="f vf" style="flex:0 0 auto"><label>Year</label><div class="line" id="vyear"></div></div>
+    <div class="f vf"><label>Model</label><div class="line" id="vmodel"></div></div>
+    <div class="f vf"><label>Trim</label><div class="line" id="vtrim"></div></div>
+    <div class="f vf"><label>Model code</label><div class="line" id="vcode"></div></div>
   </div>
   <table>
     <tr><td class="lbl">Exterior color</td><td class="val"><div class="seg"><span><i>1</i><select class="cs" data-kind="ext"></select><b></b></span><span><i>2</i><select class="cs" data-kind="ext"></select><b></b></span><span><i>3</i><select class="cs" data-kind="ext"></select><b></b></span></div></td></tr>
@@ -317,19 +327,19 @@ const DATA = {
  ] },
     "SE": { codes: ["4523 · SE FWD","4524 · SE AWD"], fio: [
       ["MR","Moonroof Package — power tilt/slide moonroof","$850",[4523,4524]],
-      ["CY","Weather Package — heated steering wheel, rain-sensing wipers","$375",[4523,4524]],
+      ["CY","Weather Package — heated wheel, rain-sensing wipers","$375",[4523,4524]],
       ["CP","Convenience Package — power liftgate","$400",[4523,4524]] ] },
     "XLE Premium": { codes: ["4527 · XLE Premium FWD","4444 · XLE Premium AWD"], fio: [
-      ["SR","Panoramic Moonroof Package — pano roof, digital rearview mirror","$1,850",[4527,4444]],
-      ["DA","XLE Driver Assist Package — FCTA, LCA, Traffic Jam Assist","$650",[4527,4444]],
-      ["CY","Weather Package — heated steering wheel, rain-sensing wipers","$375",[4527,4444]] ] },
+      ["SR","Panoramic Moonroof Package — pano roof, digital mirror","$1,850",[4527,4444]],
+      ["DA","XLE Driver Assist Package — FCTA, LCA, TJA","$650",[4527,4444]],
+      ["CY","Weather Package — heated wheel, rain-sensing wipers","$375",[4527,4444]] ] },
     "Woodland": { codes: ["4437 · Woodland AWD"], fio: [
       ["MR","Moonroof Package — power tilt/slide moonroof","$850",[4437]] ] },
     "XSE": { codes: ["4530 · XSE AWD"], fio: [
-      ["SR","Panoramic Moonroof Package — pano roof, digital rearview mirror","$700",[4530]],
-      ["DA","XSE Driver Assist Package — FCTA, LCA, Traffic Jam Assist","$420",[4530]],
+      ["SR","Panoramic Moonroof Package — pano roof, digital mirror","$700",[4530]],
+      ["DA","XSE Driver Assist Package — FCTA, LCA, TJA","$420",[4530]],
       ["EJ","JBL Premium Audio Package — 9 speakers, subwoofer","$620",[4530]],
-      ["CY","Weather Package — heated steering wheel, rain-sensing wipers","$375",[4530]] ] },
+      ["CY","Weather Package — heated wheel, rain-sensing wipers","$375",[4530]] ] },
     "Limited": { codes: ["4534 · Limited AWD"], fio: [
       ["WU","20-in. Wheel Package — 20-in. wheels, larger spare","$1,240",[4534]],
       ["HU","10-in. color Head-Up Display","$600",[4534]] ] }
@@ -341,15 +351,15 @@ const DATA = {
     trims: {
     "SE": { codes: ["4544 · SE AWD"], fio: [
       ["MR","Moonroof Package — power tilt/slide moonroof","$850",[4544]],
-      ["CY","Weather Package — heated steering wheel, rain-sensing wipers","$375",[4544]],
+      ["CY","Weather Package — heated wheel, rain-sensing wipers","$375",[4544]],
       ["CP","Convenience Package — power liftgate","$400",[4544]] ] },
     "Woodland": { codes: ["4537 · Woodland AWD"], fio: [
       ["MR","Moonroof Package — power tilt/slide moonroof","$850",[4537]] ] },
     "XSE": { codes: ["4550 · XSE AWD"], fio: [
-      ["SR","Panoramic Moonroof Package — pano roof, digital rearview mirror","$1,850",[4550]],
-      ["DA","Driver Assist Package — Advanced Park, paddle shifters, HUD","$1,170",[4550]],
-      ["EJ","JBL Premium Audio Package — 9 speakers, subwoofer, 800W amp","$620",[4550]],
-      ["CY","Weather Package — heated steering wheel, rain-sensing wipers","$375",[4550]] ] },
+      ["SR","Panoramic Moonroof Package — pano roof, digital mirror","$1,850",[4550]],
+      ["DA","Driver Assist Package — Advanced Park, paddles, HUD","$1,170",[4550]],
+      ["EJ","JBL Premium Audio Package — 9 speakers, subwoofer","$620",[4550]],
+      ["CY","Weather Package — heated wheel, rain-sensing wipers","$375",[4550]] ] },
     "GR SPORT": { codes: ["4538 · GR SPORT AWD"], fio: [
       ["AS","All-season tires","$0",[4538]] ] }
   }},
