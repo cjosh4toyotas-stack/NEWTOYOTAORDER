@@ -139,7 +139,7 @@
   <table>
     <tr><td class="lbl">Exterior color</td><td class="val"><div class="seg"><span><i>1</i><select class="cs" data-kind="ext"></select><b></b></span><span><i>2</i><select class="cs" data-kind="ext"></select><b></b></span><span><i>3</i><select class="cs" data-kind="ext"></select><b></b></span></div></td></tr>
     <tr><td class="lbl">Interior color</td><td class="val"><div class="seg"><span><i>1</i><select class="cs" data-kind="int"></select><b></b></span><span><i>2</i><select class="cs" data-kind="int"></select><b></b></span></div></td></tr>
-    <tr><td colspan="2" style="border-bottom:none;padding:3px 0 0;font-size:8pt;color:var(--mid)">* Special color. Additional $475 MSRP.</td></tr>
+    <tr><td colspan="2" style="border-bottom:none;padding:3px 0 0;font-size:8pt;color:var(--mid)">* Special color. Additional MSRP applies.</td></tr>
   </table>
 
   <h2>Factory Installed Options &amp; Packages (FIO) <span id="fiohint">Lines with available options must be answered to proceed</span></h2>
@@ -214,10 +214,65 @@
 </div>
 
 <script>
-const EXT = { "01H5":"Cement", "01L5":"Heavy Metal*", "03T3":"Ruby Flare Pearl*", "0218":"Midnight Black Metallic", "0040":"Ice Cap", "06X5":"Cypress", "0089":"Wind Chill Pearl*", "08X8":"Blueprint" };
-const INT = { "FA15":"Gray Woven Fabric", "EB22":"Black SofTex", "LA42":"Macadamia Leather", "LA25":"Black Leather", "EB16":"Moonstone/Black SofTex", "LB25":"Black/Red Leather", "EB21":"Black/Blue SofTex/Fabric", "EA15":"Gray SofTex", "LB42":"Macadamia Leather" };
 const DATA = {
-  "Sienna": { year: 2026, trims: {
+  "Tacoma": { year: 2026, byCode: true, EXT: { "0040":"Ice Cap", "01J9":"Celestial Silver Metallic", "01L7":"Underground", "0202":"Black", "04Z2":"Mudbath", "06X1":"Bronze Oxide", "08X0":"Heritage Blue", "03U5":"Supersonic Red*", "0089":"Wind Chill Pearl*", "0M73":"Wave Maker with Black roof*", "02MQ":"Ice Cap with Black roof", "02ZW":"Underground with Black roof" }, INT: { "FA20":"Black Fabric", "FB20":"Black Fabric", "FF10":"Boulder Fabric w/Smoke Silver", "FF20":"Black Fabric w/Smoke Silver", "FC11":"Boulder/Black Fabric w/Anodized Blue", "FC12":"Boulder/Black Fabric w/Smoke Silver", "FE11":"Boulder/Black Fabric w/Anodized Blue", "FE12":"Boulder/Black Fabric w/Smoke Silver", "FD11":"Boulder/Black Fabric w/Anodized Blue", "FD12":"Boulder/Black Fabric w/Smoke Silver", "EA20":"Black SofTex", "EB20":"Black SofTex", "EB10":"Boulder SofTex", "EC60":"Mineral SofTex", "ED22":"Black SofTex", "ED30":"Cockpit Red SofTex" },
+    extBy: {"0M73": [7598], "02MQ": [7598], "02ZW": [7598], "06X1": [7542, 7543, 7566, 7172, 7148, 7545, 7568, 7544, 7582, 7536, 7538, 7530, 7532, 7534], "0040": [7186, 7162, 7514, 7547, 7594, 7570, 7170, 7540, 7146, 7126, 7558, 7166, 7542, 7543, 7566, 7172, 7148, 7545, 7568, 7544, 7536, 7538, 7530, 7532], "01J9": [7186, 7162, 7514, 7547, 7594, 7570, 7170, 7540, 7146, 7126, 7558, 7166, 7542, 7543, 7566, 7172, 7148, 7545, 7568, 7544, 7582, 7536, 7538, 7530, 7532, 7534], "01L7": [7186, 7162, 7514, 7547, 7594, 7570, 7170, 7540, 7146, 7126, 7558, 7166, 7542, 7543, 7566, 7172, 7148, 7545, 7568, 7544, 7582, 7536, 7538, 7530, 7532, 7534], "0202": [7186, 7162, 7514, 7547, 7594, 7570, 7170, 7540, 7146, 7126, 7558, 7166, 7542, 7543, 7566, 7172, 7148, 7545, 7568, 7544, 7582, 7536, 7538, 7598, 7530, 7532, 7534], "04Z2": [7542, 7543, 7566, 7172, 7148, 7545, 7568, 7544, 7530, 7532, 7166], "03U5": [7186, 7162, 7514, 7547, 7594, 7570, 7170, 7540, 7146, 7126, 7558, 7542, 7543, 7566, 7172, 7148, 7545, 7568, 7544, 7582, 7530, 7532, 7534, 7166], "08X0": [7570, 7170, 7540, 7146, 7542, 7543, 7566, 7172, 7148, 7545, 7568, 7544, 7582, 7530, 7532, 7534], "0089": [7542, 7543, 7566, 7172, 7148, 7582, 7530, 7534]},
+    intBy: {"FC11": [7166], "FB20": [7126, 7558], "EB20": [7534, 7582], "FA20": [7186, 7162, 7514, 7547, 7594], "FC12": [7166], "FE11": [7542, 7543, 7566, 7172, 7148, 7530], "EA20": [7530, 7532, 7542, 7543, 7566, 7172, 7148, 7545, 7568, 7544], "ED22": [7598], "ED30": [7598], "FD12": [7532, 7545, 7568, 7544], "EC60": [7536, 7538], "EB10": [7534, 7582], "FD11": [7532, 7545, 7568, 7544], "FE12": [7542, 7543, 7566, 7172, 7148, 7530], "FF10": [7570, 7170, 7540, 7146], "FF20": [7570, 7170, 7540, 7146]},
+    PC: {"03U5":"$475","0089":"$475","0M73":"$695"},
+    trims: {
+    "SR": { codes: ["7162 · XtraCab 6-ft 4x2 AT","7186 · Double Cab 5-ft 4x2 AT","7514 · XtraCab 6-ft 4x4 AT","7547 · Double Cab 5-ft 4x4 MT","7594 · Double Cab 5-ft 4x4 AT"], fio: [
+      ["LL","SR Upgrade Package — BSM, parking assist, LED bed lights, Digital Key, full-size spare","$1,495",[7186,7594]],
+      ["LL","SR Upgrade Package (Double Cab M/T) — BSM, parking assist, LED bed lights, Digital Key, full-size spare","$1,680",[7547]],
+      ["LL","SR Upgrade Package (XtraCab) — BSM, parking assist, LED bed lights, Digital Key, full-size spare","$1,410",[7514]] ] },
+    "SR5": { codes: ["7126 · XtraCab 6-ft 4x2 AT","7146 · Double Cab 5-ft 4x2 AT","7170 · Double Cab 6-ft 4x2 AT","7558 · XtraCab 6-ft 4x4 AT","7540 · Double Cab 5-ft 4x4 AT","7570 · Double Cab 6-ft 4x4 AT"], fio: [
+      ["SM","SR5 Upgrade Package (XtraCab)","$1,825",[7126,7558]],
+      ["SM","SR5 Upgrade Package (Double Cab)","$2,900",[7146,7540,7170,7570]],
+      ["SP","SR5 Upgrade + Cold Weather Package (XtraCab)","$2,560",[7126,7558]],
+      ["SP","SR5 Upgrade + Cold Weather Package (Double Cab)","$3,635",[7146,7540,7170,7570]],
+      ["CY","Heated front seats","$585",[7126,7146,7540,7170,7570,7558]],
+      ["ST","Full-size spare tire","$85",[7126,7146,7540,7170,7570,7558]] ] },
+    "TRD PreRunner": { codes: ["7166 · XtraCab 6-ft 4x2 AT"], fio: [
+      ["SM","TRD PreRunner Upgrade Package","$1,310",[7166]] ] },
+    "TRD Sport": { codes: ["7148 · Double Cab 5-ft 4x2 AT","7172 · Double Cab 6-ft 4x2 AT","7543 · Double Cab 5-ft 4x4 MT","7542 · Double Cab 5-ft 4x4 AT","7566 · Double Cab 6-ft 4x4 AT","7530 · Double Cab 5-ft 4x4 i-FORCE MAX"], fio: [
+      ["PU","TRD Sport Upgrade Package (2WD)","$4,555",[7148]],
+      ["PU","TRD Sport Upgrade Package (2WD)","$4,275",[7172]],
+      ["PU","TRD Sport Upgrade Package (MT)","$4,825",[7543]],
+      ["PU","TRD Sport Upgrade Package (4WD, A/T)","$4,840",[7542]],
+      ["PU","TRD Sport Upgrade Package (4WD, A/T)","$4,560",[7566]],
+      ["PU","TRD Sport Upgrade Package (i-FORCE MAX)","$4,330",[7530]],
+      ["PQ","TRD Sport Premium Package (2WD)","$8,465",[7148]],
+      ["PQ","TRD Sport Premium Package (2WD)","$8,185",[7172]],
+      ["PQ","TRD Sport Premium Package (MT)","$8,690",[7543]],
+      ["PQ","TRD Sport Premium Package (4WD, A/T)","$8,750",[7542]],
+      ["PQ","TRD Sport Premium Package (4WD, A/T)","$8,470",[7566]],
+      ["PQ","TRD Sport Premium Package (i-FORCE MAX)","$8,290",[7530]],
+      ["EE","14-in. Audio Multimedia upgrade — with TRD Sport Upgrade Package","$845",[7148,7542,7543,7172,7566,7530]],
+      ["EF","14-in. Audio Multimedia upgrade (verify availability)","$720",[7148,7172,7530,7542,7543,7566]],
+      ["CY","Heated front seats","$585",[7148,7542,7543,7172,7566,7530]],
+      ["MR","Power moonroof","$850",[7148,7542,7543,7172,7566,7530]],
+      ["TD","Towing Technology Package","$850",[7148,7542,7172,7566,7530]] ] },
+    "TRD Off-Road": { codes: ["7545 · Double Cab 5-ft 4x4 MT","7544 · Double Cab 5-ft 4x4 AT","7568 · Double Cab 6-ft 4x4 AT","7532 · Double Cab 5-ft 4x4 i-FORCE MAX"], fio: [
+      ["OU","TRD Off-Road Upgrade Package (A/T)","$4,840",[7544]],
+      ["OU","TRD Off-Road Upgrade Package (A/T)","$4,560",[7568]],
+      ["OU","TRD Off-Road Upgrade Package (M/T)","$4,825",[7545]],
+      ["OU","TRD Off-Road Upgrade Package (i-FORCE MAX)","$4,330",[7532]],
+      ["OF","TRD Off-Road Premium Package (A/T)","$9,220",[7544]],
+      ["OF","TRD Off-Road Premium Package (A/T) (verify title)","$8,940",[7568]],
+      ["OF","TRD Off-Road Premium Package (M/T)","$8,940",[7545]],
+      ["OF","TRD Off-Road Premium Package (i-FORCE MAX)","$8,540",[7532]],
+      ["EE","14-in. Audio Multimedia upgrade (verify availability)","$845",[7544,7545,7568,7532]],
+      ["SF","Stabilizer Disconnect Mechanism (SDM)","$1,230",[7544,7568,7545,7532]],
+      ["CY","Heated front seats","$585",[7544,7568,7545,7532]],
+      ["MR","Power moonroof","$850",[7544,7568,7545,7532]],
+      ["TD","Towing Technology Package","$850",[7544,7568,7532]] ] },
+    "Limited": { codes: ["7582 · Double Cab 5-ft 4x4 AT","7534 · Double Cab 5-ft 4x4 i-FORCE MAX"], fio: [
+      ["TD","Towing Technology Package","$850",[7582,7534]] ] },
+    "Trailhunter": { codes: ["7536 · Double Cab 5-ft 4x4 i-FORCE MAX","7538 · Double Cab 6-ft 4x4 i-FORCE MAX"], fio: [
+      ["TD","Towing Technology Package","$850",[7536,7538]] ] },
+    "TRD Pro": { codes: ["7598 · Double Cab 5-ft 4x4 i-FORCE MAX"], fio: [
+      ["TD","Towing Technology Package","$850",[7598]] ] }
+  }},
+  "Sienna": { year: 2026, EXT: { "01H5":"Cement", "01L5":"Heavy Metal*", "03T3":"Ruby Flare Pearl*", "0218":"Midnight Black Metallic", "0040":"Ice Cap", "06X5":"Cypress", "0089":"Wind Chill Pearl*", "08X8":"Blueprint" }, INT: { "FA15":"Gray Woven Fabric", "EB22":"Black SofTex", "LA42":"Macadamia Leather", "LA25":"Black Leather", "EB16":"Moonstone/Black SofTex", "LB25":"Black/Red Leather", "EB21":"Black/Blue SofTex/Fabric", "EA15":"Gray SofTex", "LB42":"Macadamia Leather" }, trims: {
     "LE": { ext: ["01L5","03T3","0218","0040","06X5","08X8"], int: ["FA15"], codes: ["5402 FWD","5403 AWD"], fio: [
       ["RR","Roof rails, black","$150"],
       ["ST","Spare tire","$75"],
@@ -258,7 +313,7 @@ function wire(){
   Array.prototype.forEach.call(document.querySelectorAll('.box'), function(b){ if(!b.dataset.w){ b.dataset.w=1; b.addEventListener('click',function(){ if(b.classList.contains('dis')||b.classList.contains('lock')) return; b.classList.toggle('on'); b.textContent = b.classList.contains('on') ? '\u2713' : ''; }); } });
 }
 (function(){ var d=new Date(); document.getElementById('today').textContent=(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear(); })();
-const PCCOLORS = {"01L5":1,"03T3":1,"0089":1};
+const PCCOLORS = {"01L5":1,"03T3":1,"0089":1,"03U5":1,"0M73":1};
 function setBox(b,on){ b.classList.toggle('on',on); b.textContent = on ? '\u2713' : ''; }
 function applyPC(){
   var pcRow=null;
@@ -273,9 +328,16 @@ function applyPC(){
   if(pick<0) return;
   Array.prototype.forEach.call(boxes, function(b,i){ if(i===pick){ setBox(b,true); b.classList.add('lock'); } else b.classList.add('dis'); });
 }
+function codeNum(){ return parseInt((cSel.value||'').split(' ')[0],10); }
+function colorList(m,t,kind){
+  if(!t) return [];
+  if(m.byCode){ var n=codeNum(); if(!n) return []; var by=kind==='ext'?m.extBy:m.intBy; return Object.keys(by).filter(function(c){ return by[c].indexOf(n)>=0; }); }
+  return t[kind];
+}
 function fillColors(t){
+  var m = mSel.value ? DATA[mSel.value] : null;
   Array.prototype.forEach.call(document.querySelectorAll('select.cs'), function(sel){
-    var map = sel.dataset.kind==='ext' ? EXT : INT, list = t ? t[sel.dataset.kind] : [];
+    var map = m ? (sel.dataset.kind==='ext' ? m.EXT : m.INT) : {}, list = m ? colorList(m,t,sel.dataset.kind) : [];
     sel.innerHTML=''; sel.add(new Option('',''));
     list.forEach(function(c){ sel.add(new Option(map[c]+' '+c, c)); });
     var b=sel.nextElementSibling; b.className='mirror'; b.textContent='';
@@ -305,12 +367,19 @@ function render(){
   const m = DATA[mSel.value], t = m.trims[tSel.value];
   document.getElementById('vyear').textContent = m.year; document.getElementById('vmodel').textContent = mSel.value; document.getElementById('vtrim').textContent = tSel.value; document.getElementById('vcode').textContent = cSel.value;
   fillColors(t);
+  var n=codeNum(), fio=t.fio;
+  if(m.byCode){ fio = n ? t.fio.filter(function(f){ return f[3].indexOf(n)>=0; }) : []; }
+  if(m.byCode && n && !fio.some(function(f){return f[0]==='PC';})){
+    var pcs=colorList(m,t,'ext').filter(function(c){ return m.PC[c]; });
+    if(pcs.length){ var prices=[]; pcs.forEach(function(c){ if(prices.indexOf(m.PC[c])<0) prices.push(m.PC[c]); });
+      fio=fio.concat([["PC","Special color — "+pcs.map(function(c){ return m.EXT[c].replace('*',''); }).join(', '),prices.join(' / ')]]); }
+  }
   const body = document.getElementById('fio'); body.innerHTML='';
-  t.fio.forEach(function(f){ body.insertAdjacentHTML('beforeend',
+  fio.forEach(function(f){ body.insertAdjacentHTML('beforeend',
     '<tr><td class="code w fill">'+f[0]+'</td><td class="gap"></td><td class="w fill">'+f[1]+'</td><td class="gap"></td><td class="w price fill">'+f[2]+'</td>'+cells+'</tr>'); });
-  for (let i=t.fio.length;i<ROWS;i++) body.insertAdjacentHTML('beforeend','<tr><td class="code w"></td><td class="gap"></td><td class="w"></td><td class="gap"></td><td class="w price"></td>'+cells+'</tr>');
-  document.getElementById('fiohint').textContent = t.fio.length ? 'Lines with available options must be answered to proceed' : 'Toyota offers no factory options or packages on this trim';
-  wire();
+  for (let i=fio.length;i<ROWS;i++) body.insertAdjacentHTML('beforeend','<tr><td class="code w"></td><td class="gap"></td><td class="w"></td><td class="gap"></td><td class="w price"></td>'+cells+'</tr>');
+  document.getElementById('fiohint').textContent = (m.byCode && !n) ? 'Select a model code to load this truck\u2019s options' : (fio.length ? 'Lines with available options must be answered to proceed' : 'Toyota offers no factory options or packages on this trim');
+  wire(); applyPC();
 }
 mSel.onchange = fillTrims; tSel.onchange = fillCodes; cSel.onchange = render; fillTrims();
 </script>
