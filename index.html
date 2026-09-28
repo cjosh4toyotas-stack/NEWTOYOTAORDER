@@ -138,10 +138,10 @@
 
   <h2>Vehicle</h2>
   <div class="row" style="margin-bottom:4px">
-    <div class="f" style="flex:0 0 100px"><label>Year</label><div class="line" id="vyear"></div></div>
-    <div class="f" style="flex:1.4"><label>Model</label><div class="line" id="vmodel"></div></div>
-    <div class="f" style="flex:0 0 160px"><label>Trim</label><div class="line" id="vtrim"></div></div>
-    <div class="f" style="flex:2"><label>Model code</label><div class="line" id="vcode" style="white-space:nowrap"></div></div>
+    <div class="f" style="flex:0 0 90px"><label>Year</label><div class="line" id="vyear"></div></div>
+    <div class="f" style="flex:1 1 120px;min-width:0"><label>Model</label><div class="line" id="vmodel" style="white-space:nowrap"></div></div>
+    <div class="f" style="flex:1 1 140px;min-width:0"><label>Trim</label><div class="line" id="vtrim" style="white-space:nowrap;min-width:0"></div></div>
+    <div class="f" style="flex:1.6 1 200px;min-width:0"><label>Model code</label><div class="line" id="vcode" style="white-space:nowrap"></div></div>
   </div>
   <table>
     <tr><td class="lbl">Exterior color</td><td class="val"><div class="seg"><span><i>1</i><select class="cs" data-kind="ext"></select><b></b></span><span><i>2</i><select class="cs" data-kind="ext"></select><b></b></span><span><i>3</i><select class="cs" data-kind="ext"></select><b></b></span></div></td></tr>
@@ -199,12 +199,12 @@
   <div class="dealer">
     <h2>Dealership use only</h2>
     <div class="row">
-      <div class="f"><label>Model code</label><div class="line"></div></div>
-      <div class="f"><label>Ext. codes 1 · 2 · 3</label><div class="line"></div></div>
-      <div class="f"><label>Int. codes 1 · 2</label><div class="line"></div></div>
+      <div class="f"><label>Model code</label><div class="line" id="dModel"></div></div>
+      <div class="f"><label>Ext. codes 1 · 2 · 3</label><div class="line" id="dExt"></div></div>
+      <div class="f"><label>Int. codes 1 · 2</label><div class="line" id="dInt"></div></div>
     </div>
     <div class="row">
-      <div class="f"><label>FIO codes</label><div class="line"></div></div>
+      <div class="f"><label>FIO codes</label><div class="line" id="dFio"></div></div>
       <div class="f"><label>PIO codes</label><div class="line"></div></div>
     </div>
     <div class="row">
@@ -568,11 +568,23 @@ mSel.add(new Option('Select model',''));
 ['4Runner','Camry','Corolla','Prius','Prius Plug-in Hybrid','RAV4','RAV4 Plug-in Hybrid','Sienna','Tacoma','Tundra'].forEach(function(m){ if(DATA[m]) mSel.add(new Option(m, m)); });
 function wire(){
   Array.prototype.forEach.call(document.querySelectorAll('.line:not(#today):not(#vyear):not(#vmodel):not(#vtrim):not(#vcode), td.w'), function(el){ el.setAttribute('contenteditable','true'); });
-  Array.prototype.forEach.call(document.querySelectorAll('.box'), function(b){ if(!b.dataset.w){ b.dataset.w=1; b.addEventListener('click',function(){ if(b.classList.contains('dis')||b.classList.contains('lock')) return; b.classList.toggle('on'); b.textContent = b.classList.contains('on') ? '\u2713' : ''; applyIncludes(); applyNo(); }); } });
+  Array.prototype.forEach.call(document.querySelectorAll('.box'), function(b){ if(!b.dataset.w){ b.dataset.w=1; b.addEventListener('click',function(){ if(b.classList.contains('dis')||b.classList.contains('lock')) return; b.classList.toggle('on'); b.textContent = b.classList.contains('on') ? '\u2713' : ''; applyIncludes(); applyNo(); fillDealer(); }); } });
 }
 (function(){ var d=new Date(); document.getElementById('today').textContent=(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear(); })();
 const PCCOLORS = {"01L5":1,"03T3":1,"0089":1,"03U5":1,"0M73":1,"0796":1,"0M22":1,"02SQ":1,"02VP":1,"02TB":1,"08Z3":1,"02YJ":1,"02PS":1,"0M04":1,"02SC":1,"0M93":1,"0MA3":1,"0MA4":1,"0MA5":1,"0MA6":1,"0M87":1,"0MA7":1};
 function setBox(b,on){ b.classList.toggle('on',on); b.textContent = on ? '\u2713' : ''; }
+function fillDealer(){
+  var mc = (cSel.value||'').split(' ')[0];
+  document.getElementById('dModel').textContent = mc;
+  var ext=[], intr=[];
+  Array.prototype.forEach.call(document.querySelectorAll('select.cs'), function(sel){ if(sel.value) (sel.dataset.kind==='ext'?ext:intr).push(sel.value); });
+  document.getElementById('dExt').textContent = ext.join(' · ');
+  document.getElementById('dInt').textContent = intr.join(' · ');
+  var must=[], flex=[];
+  Array.prototype.forEach.call(document.querySelectorAll('#fio tr'), function(tr){ var c=tr.querySelector('td.code'); if(!c||!c.textContent.trim()) return; var bx=tr.querySelectorAll('.box'); if(bx.length<2) return;
+    if(bx[0].classList.contains('on')) must.push(c.textContent.trim()); else if(bx[1].classList.contains('on')) flex.push(c.textContent.trim()); });
+  document.getElementById('dFio').textContent = must.join(' ') + (flex.length ? (must.length?'   ':'')+'Flexible: '+flex.join(' ') : '');
+}
 function applyNo(){
   Array.prototype.forEach.call(document.querySelectorAll('#fio tr'), function(tr){
     var no = tr.querySelector('.box.no');
@@ -611,6 +623,7 @@ function applyPC(){
   var pick = (pc>0 && non===0) ? 0 : (pc>0 && non>0) ? 1 : -1;
   if(pick<0) return;
   Array.prototype.forEach.call(boxes, function(b,i){ if(i===pick){ setBox(b,true); b.classList.add('lock'); } else b.classList.add('dis'); });
+  fillDealer();
 }
 function codeNum(){ return parseInt((cSel.value||'').split(' ')[0],10); }
 function colorList(m,t,kind){
@@ -625,11 +638,11 @@ function fillColors(t){
     sel.innerHTML=''; sel.add(new Option('',''));
     list.forEach(function(c){ sel.add(new Option(map[c]+' '+c, c)); });
     var b=sel.nextElementSibling; b.className='mirror'; b.textContent='';
-    sel.onchange=function(){ b.textContent = sel.options[sel.selectedIndex].text; applyPC(); };
+    sel.onchange=function(){ b.textContent = sel.options[sel.selectedIndex].text; applyPC(); fillDealer(); };
   });
 }
 function blank(){
-  ['vyear','vmodel','vtrim','vcode'].forEach(function(i){ document.getElementById(i).textContent=''; });
+  ['vyear','vmodel','vtrim','vcode','dModel','dExt','dInt','dFio'].forEach(function(i){ document.getElementById(i).textContent=''; });
   fillColors(null);
   document.getElementById('fiohint').textContent = 'Lines with available options must be answered to proceed';
   const body = document.getElementById('fio'); body.innerHTML = '';
@@ -666,7 +679,7 @@ function render(){
     '<tr><td class="code w fill">'+f[0]+'</td><td class="gap"></td><td class="w fill">'+f[1]+'</td><td class="gap"></td><td class="w price fill">'+f[2]+'</td>'+cells+'</tr>'); });
   for (let i=fio.length;i<ROWS;i++) body.insertAdjacentHTML('beforeend','<tr><td class="code w"></td><td class="gap"></td><td class="w"></td><td class="gap"></td><td class="w price"></td>'+cells+'</tr>');
   document.getElementById('fiohint').textContent = (m.byCode && !n) ? 'Select a model code to load this truck\u2019s options' : (fio.length ? 'Lines with available options must be answered to proceed' : 'Toyota offers no factory options or packages on this trim');
-  wire(); applyPC();
+  wire(); applyPC(); fillDealer();
 }
 mSel.onchange = fillTrims; tSel.onchange = fillCodes; cSel.onchange = render; fillTrims();
 </script>
