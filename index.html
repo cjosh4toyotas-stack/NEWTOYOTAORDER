@@ -98,6 +98,8 @@
   td.c{width:64px}
   th.must,th.flex,th.no{white-space:nowrap;width:70px}
   .box.lock{pointer-events:none}
+  tr.declined td.w, tr.declined td.code.fill, tr.declined td.price{color:#B5B5B5 !important;border-bottom-color:#D8D8D8}
+  tr.declined .box.must, tr.declined .box.flex{border-color:#CCC}
   td.c .inc{color:#1B8A3C;font-size:8.5pt;font-weight:bold;white-space:nowrap}
   .box.dis{border-color:#BBB;color:#BBB;pointer-events:none;background:#F4F4F4}
   #fio.compact td{padding:2px 0;font-size:9.5pt}
@@ -435,11 +437,17 @@ mSel.add(new Option('Select model',''));
 ['4Runner','Sienna','Tacoma','Tundra'].forEach(function(m){ if(DATA[m]) mSel.add(new Option(m, m)); });
 function wire(){
   Array.prototype.forEach.call(document.querySelectorAll('.line:not(#today):not(#vyear):not(#vmodel):not(#vtrim):not(#vcode), td.w'), function(el){ el.setAttribute('contenteditable','true'); });
-  Array.prototype.forEach.call(document.querySelectorAll('.box'), function(b){ if(!b.dataset.w){ b.dataset.w=1; b.addEventListener('click',function(){ if(b.classList.contains('dis')||b.classList.contains('lock')) return; b.classList.toggle('on'); b.textContent = b.classList.contains('on') ? '\u2713' : ''; applyIncludes(); }); } });
+  Array.prototype.forEach.call(document.querySelectorAll('.box'), function(b){ if(!b.dataset.w){ b.dataset.w=1; b.addEventListener('click',function(){ if(b.classList.contains('dis')||b.classList.contains('lock')) return; b.classList.toggle('on'); b.textContent = b.classList.contains('on') ? '\u2713' : ''; applyIncludes(); applyNo(); }); } });
 }
 (function(){ var d=new Date(); document.getElementById('today').textContent=(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear(); })();
 const PCCOLORS = {"01L5":1,"03T3":1,"0089":1,"03U5":1,"0M73":1,"0796":1};
 function setBox(b,on){ b.classList.toggle('on',on); b.textContent = on ? '\u2713' : ''; }
+function applyNo(){
+  Array.prototype.forEach.call(document.querySelectorAll('#fio tr'), function(tr){
+    var no = tr.querySelector('.box.no');
+    tr.classList.toggle('declined', !!(no && no.classList.contains('on')));
+  });
+}
 function applyIncludes(){
   var m = mSel.value ? DATA[mSel.value] : null; if(!m || !m.INCLUDES) return;
   var rows = Array.prototype.slice.call(document.querySelectorAll('#fio tr'));
