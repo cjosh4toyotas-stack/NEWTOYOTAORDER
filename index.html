@@ -220,6 +220,40 @@
 
 <script>
 const DATA = {
+  "4Runner": { year: 2026, byCode: true, EXT: { "0040":"Ice Cap", "01L7":"Underground", "0202":"Black", "01L0":"Cutting Edge", "08X0":"Heritage Blue", "06X7":"Everest", "03U5":"Supersonic Red*", "0089":"Wind Chill Pearl*", "0796":"Wave Maker*" }, INT: { "FA20":"Black Fabric", "FA10":"Boulder Fabric", "FB11":"Black/Boulder Fabric w/Anodized Blue", "FB12":"Black/Boulder Fabric w/Smoke Silver", "EA20":"Black SofTex", "LA20":"Black Leather", "LA45":"Portobello Leather", "LB81":"Dark Navy Premium Leather", "EB63":"Mineral SofTex", "EC22":"Black SofTex", "EC30":"Cockpit Red SofTex" },
+    extBy: {"0796": [8634], "06X7": [8670, 8628, 8672, 8630, 8636], "01L7": [8642, 8664, 8648, 8668, 8671, 8643, 8673, 8644, 8670, 8628, 8672, 8630, 8632, 8638, 8634, 8636], "08X0": [8642, 8664, 8671, 8643, 8673, 8644, 8670, 8628, 8672, 8630, 8648, 8668, 8632, 8638], "01L0": [8642, 8664, 8671, 8643, 8673, 8644, 8670, 8628, 8672, 8630, 8638], "0202": [8642, 8664, 8671, 8643, 8673, 8644, 8670, 8628, 8672, 8630, 8648, 8668, 8632, 8638, 8634, 8636], "0040": [8642, 8664, 8670, 8628, 8672, 8634, 8636, 8630], "0089": [8648, 8668, 8671, 8643, 8673, 8644, 8632, 8638], "03U5": [8642, 8664, 8671, 8643, 8670, 8628, 8673, 8644, 8672, 8630, 8648, 8668, 8632, 8638]},
+    intBy: {"LA20": [8632, 8648, 8668], "FA20": [8642, 8664], "EC22": [8634], "EC30": [8634], "EA20": [8672, 8630, 8673, 8644], "LA45": [8632, 8648, 8668], "FA10": [8642, 8664], "LB81": [8638], "EB63": [8636], "FB11": [8628, 8671, 8643, 8670], "FB12": [8628, 8671, 8643, 8670]},
+    PC: {"03U5":"$475","0089":"$475","0796":"$695"},
+    trims: {
+    "SR5": { codes: ["8642 · 4x2","8664 · 4x4"], fio: [
+      ["TH","Third row seating","$770",[8642,8664]],
+      ["KH","Fixed running boards","$345",[8642,8664]] ] },
+    "TRD Sport": { codes: ["8643 · 4x2","8671 · 4x4"], fio: [
+ ] },
+    "TRD Sport Premium": { codes: ["8644 · 4x2","8673 · 4x4"], fio: [
+      ["MR","Moonroof","$850",[8644,8673]],
+      ["TD","Tow Tech Package","$400",[8644,8673]] ] },
+    "TRD Off-Road": { codes: ["8670 · 4x4","8628 · 4x4 i-FORCE MAX"], fio: [
+      ["DC","Auxiliary switches","$400",[8628]] ] },
+    "TRD Off-Road Premium": { codes: ["8672 · 4x4","8630 · 4x4 i-FORCE MAX"], fio: [
+      ["MR","Moonroof","$850",[8672,8630]],
+      ["DC","Auxiliary switches","$400",[8630]],
+      ["SF","Stabilizer Disconnect Mechanism (SDM)","$1,230",[8630]],
+      ["TD","Tow Tech Package","$400",[8672,8630]] ] },
+    "Limited": { codes: ["8648 · 4x2","8668 · Full-time 4x4","8632 · Full-time 4x4 i-FORCE MAX"], fio: [
+      ["TS","Third row seating (gas only)","$1,330",[8648,8668]],
+      ["KG","Power running boards","$1,005",[8648,8668,8632]],
+      ["TL","LED liftgate light","$200",[8648,8668,8632]],
+      ["DG","Digital Key","$275",[8648,8668,8632]],
+      ["TD","Tow Tech Package","$400",[8648,8668,8632]] ] },
+    "Platinum": { codes: ["8638 · Full-time 4x4 i-FORCE MAX"], fio: [
+      ["KG","Power running boards","$1,005",[8638]],
+      ["TL","LED liftgate light","$200",[8638]] ] },
+    "Trailhunter": { codes: ["8636 · 4x4 i-FORCE MAX"], fio: [
+      ["DG","Digital Key","$275",[8636]] ] },
+    "TRD Pro": { codes: ["8634 · 4x4 i-FORCE MAX"], fio: [
+      ["DG","Digital Key","$275",[8634]] ] }
+  }},
   "Tundra": { year: 2026, byCode: true, EXT: { "0040":"Ice Cap", "01G3":"Magnetic Gray Metallic", "01J9":"Celestial Silver Metallic", "0218":"Midnight Black Metallic", "06X3":"Lunar Rock", "04Z2":"Mudbath", "08X8":"Blueprint", "03U5":"Supersonic Red*", "0089":"Wind Chill Pearl*", "0796":"Wave Maker*" }, INT: { "FA21":"Black Fabric", "FB21":"Black Fabric", "LE13":"Boulder Leather", "LE21":"Black Leather", "LD13":"Boulder Leather", "LD21":"Black Leather", "LA21":"Black Leather", "LB44":"Saddle Tan Leather", "LC15":"Shale Premium Leather", "EB21":"Black SofTex", "EB33":"Cockpit Red SofTex", "ED27":"Heritage Black SofTex" },
     extBy: {"06X3": [8341, 8381, 8361, 8385, 8375, 8376, 8386, 8422, 8432, 8433, 8423, 8275, 8276, 8281, 8261, 8346, 8241, 8272, 8282, 8372, 8382, 8401, 8411, 8421, 8431], "0040": [8248, 8348, 8342, 8245, 8242, 8424, 8341, 8381, 8361, 8261, 8241, 8281, 8346, 8272, 8282, 8372, 8382, 8401, 8411, 8421, 8431], "0089": [8376, 8386, 8385, 8375, 8422, 8432, 8433, 8423, 8275, 8276, 8272, 8282, 8372, 8382, 8425, 8401, 8411, 8421, 8431], "01G3": [8248, 8348, 8342, 8245, 8242, 8376, 8386, 8341, 8381, 8361, 8385, 8375, 8424, 8422, 8432, 8433, 8423, 8261, 8241, 8275, 8276, 8281, 8346, 8272, 8282, 8372, 8382, 8425, 8401, 8411, 8421, 8431], "01J9": [8248, 8348, 8342, 8245, 8242, 8376, 8386, 8341, 8381, 8361, 8385, 8375, 8422, 8432, 8433, 8423, 8261, 8241, 8275, 8276, 8281, 8346, 8272, 8282, 8372, 8382, 8425, 8401, 8411, 8421, 8431], "0218": [8248, 8348, 8342, 8245, 8242, 8424, 8376, 8386, 8341, 8381, 8361, 8385, 8375, 8422, 8432, 8433, 8423, 8261, 8241, 8275, 8276, 8281, 8346, 8272, 8282, 8372, 8382, 8425, 8401, 8411, 8421, 8431], "03U5": [8341, 8381, 8361, 8385, 8375, 8248, 8348, 8342, 8245, 8242, 8422, 8432, 8261, 8241, 8275, 8281, 8346, 8272, 8282, 8372, 8382, 8425, 8401, 8411, 8421, 8431], "04Z2": [8422, 8432, 8433, 8423, 8376, 8386, 8385, 8375, 8372, 8382, 8421, 8431, 8341, 8381, 8361], "0796": [8424], "08X8": [8376, 8386, 8341, 8381, 8361, 8385, 8375, 8422, 8432, 8433, 8423, 8275, 8276, 8281, 8261, 8346, 8241, 8272, 8282, 8372, 8382, 8425, 8401, 8411, 8421, 8431]},
     intBy: {"FA21": [8248, 8348, 8342, 8245, 8242, 8341, 8261, 8241, 8361], "FB21": [8341, 8381, 8361, 8281, 8261, 8346, 8241], "LE13": [8341, 8381, 8361, 8281, 8261, 8346, 8241], "LE21": [8341, 8381, 8361, 8281, 8261, 8346, 8241], "LD13": [8272, 8282, 8401, 8411, 8372, 8382, 8421, 8431], "LD21": [8372, 8382, 8421, 8431, 8272, 8282, 8401, 8411], "LA21": [8275, 8422, 8432, 8385, 8375], "LB44": [8276, 8376, 8386, 8433, 8423], "LC15": [8425], "EB21": [8424], "EB33": [8424], "ED27": [8361]},
@@ -398,7 +432,7 @@ const ROWS = 6;
 const cells = '<td class="c"><span class="box must"></span></td><td class="c"><span class="box flex"></span></td><td class="c"><span class="box no"></span></td>';
 const mSel = document.getElementById('model'), tSel = document.getElementById('trim'), cSel = document.getElementById('code');
 mSel.add(new Option('Select model',''));
-['Sienna','Tacoma','Tundra'].forEach(function(m){ if(DATA[m]) mSel.add(new Option(m, m)); });
+['4Runner','Sienna','Tacoma','Tundra'].forEach(function(m){ if(DATA[m]) mSel.add(new Option(m, m)); });
 function wire(){
   Array.prototype.forEach.call(document.querySelectorAll('.line:not(#today):not(#vyear):not(#vmodel):not(#vtrim):not(#vcode), td.w'), function(el){ el.setAttribute('contenteditable','true'); });
   Array.prototype.forEach.call(document.querySelectorAll('.box'), function(b){ if(!b.dataset.w){ b.dataset.w=1; b.addEventListener('click',function(){ if(b.classList.contains('dis')||b.classList.contains('lock')) return; b.classList.toggle('on'); b.textContent = b.classList.contains('on') ? '\u2713' : ''; applyIncludes(); }); } });
