@@ -48,6 +48,14 @@ Source for every value is the Options & Packages and Colors tabs of Toyota's dea
 - 2026 Sienna — LE, XLE, XSE, Limited, Woodland Edition, Platinum
 - 2026 Tacoma — SR, SR5, TRD PreRunner, TRD Sport, TRD Off-Road, Limited, Trailhunter, TRD Pro (27 model codes; i-FORCE MAX variants are listed under their trim as model codes)
 - 2026 Tundra — SR, SR5, Limited, Platinum, 1794 Edition, TRD Pro, Capstone (32 model codes; i-FORCE MAX variants listed under their trim)
+- 2026 Corolla Cross — L, LE, XLE, Hybrid S, Hybrid SE, Hybrid XSE
+- 2026 Sequoia — SR5, Limited, Platinum, TRD Pro, 1794 Edition, Capstone
+- 2026 Highlander — XLE, XSE, Limited, Platinum (hybrids as codes)
+- 2027 Land Cruiser — 1958, Land Cruiser
+- 2027 Crown — XLE, Nightshade, Limited, Platinum
+- 2026 Crown Signia — XLE, Limited
+- 2026 GR Corolla — GR Corolla, Premium Plus, GRMN (MT/AT as codes)
+- 2027 GR86 — GR86, GR86 Premium (MT/AT as codes)
 - 2026 Grand Highlander — LE, XLE, Limited, Nightshade, Platinum (14 model codes; hybrid and Hybrid MAX listed as codes under their trim)
 - 2027 bZ — XLE, Limited (5 model codes incl. FWD Plus)
 - 2027 bZ Woodland — Woodland, Woodland Premium

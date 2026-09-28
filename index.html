@@ -232,6 +232,167 @@
 
 <script>
 const DATA = {
+  "Corolla Cross": { year: 2026, byCode: true, EXT: { "0D11":"Jet Black", "0D10":"Sonic Silver", "01K3":"Celestite", "08W2":"Cavalry Blue", "06X5":"Cypress", "0089":"Wind Chill Pearl*", "0D25":"Soul Red Crystal*", "0D23":"Wind Chill/Jet Black roof*", "0D17":"Sonic Silver/Jet Black roof*", "0D22":"Cavalry Blue/Jet Black roof*", "0D28":"Soul Red/Jet Black roof*" }, INT: { "FA10":"Light Gray Fabric", "FA20":"Black Fabric", "FB11":"Gray/Black Fabric", "FB20":"Black Fabric w/Smoke Silver", "EA20":"Black SofTex", "EA23":"Portobello SofTex", "EB20":"Black SofTex/Fabric", "EB21":"Black/Blue SofTex/Fabric" },
+    extBy: {"0089": [6305, 6306, 6304, 6303, 6302, 6301, 6312, 6314, 6316], "0D10": [6305, 6306, 6304, 6303, 6302, 6301, 6312, 6314, 6316], "01K3": [6305, 6306, 6304, 6303, 6302, 6301, 6312, 6314, 6316], "08W2": [6305, 6306, 6304, 6303, 6314, 6316], "0D25": [6305, 6306, 6304, 6303, 6314, 6316], "06X5": [6305, 6306, 6304, 6303], "0D11": [6305, 6306, 6304, 6303, 6302, 6301, 6312, 6314, 6316], "0D23": [6314, 6316], "0D17": [6314, 6316], "0D22": [6314, 6316], "0D28": [6314, 6316]},
+    intBy: {"EA20": [6305, 6306], "EB21": [6316], "FB20": [6314], "FA10": [6302, 6301, 6304, 6303], "EB20": [6316], "FA20": [6304, 6303], "EA23": [6305, 6306], "FB11": [6312, 6314]},
+    PC: {"0089": "$475", "0D25": "$475", "0D23": "$975", "0D28": "$975", "0D17": "$500", "0D22": "$500"},
+    INCLUDES: {"CP": ["MR"]},
+    trims: {
+    "L": { codes: ["6301 · L FWD","6302 · L AWD"], fio: [
+ ] },
+    "LE": { codes: ["6303 · LE FWD","6304 · LE AWD"], fio: [
+      ["MR","Moonroof Package — moonroof, tonneau cover","$940",[6303,6304]],
+      ["UP","Audio Multimedia Upgrade — 10.5-in. screen","$615",[6303,6304]],
+      ["CY","Cold Weather Package — heated wheel, heated front seats","$500",[6304]] ] },
+    "XLE": { codes: ["6305 · XLE FWD","6306 · XLE AWD"], fio: [
+      ["CP","Convenience Package — power liftgate, moonroof","$1,250",[6305,6306]],
+      ["EJ","JBL Premium Audio — 9 speakers","$800",[6305,6306]] ] },
+    "Hybrid S": { codes: ["6312 · Hybrid S AWD"], fio: [
+ ] },
+    "Hybrid SE": { codes: ["6314 · Hybrid SE AWD"], fio: [
+      ["MR","Moonroof Package — moonroof, tonneau cover","$940",[6314]],
+      ["UP","Audio Multimedia Upgrade — 10.5-in. screen","$615",[6314]],
+      ["CY","Cold Weather Package — heated wheel, heated front seats","$500",[6314]] ] },
+    "Hybrid XSE": { codes: ["6316 · Hybrid XSE AWD"], fio: [
+      ["CP","Convenience Package — power liftgate, moonroof","$1,250",[6316]],
+      ["EJ","JBL Premium Audio — 9 speakers","$800",[6316]] ] }
+  }},
+  "Sequoia": { year: 2026, byCode: true, EXT: { "0040":"Ice Cap", "01J9":"Celestial Silver Metallic", "01G3":"Magnetic Gray Metallic", "0218":"Midnight Black Metallic", "06X3":"Lunar Rock", "04Z2":"Mudbath", "08X8":"Blueprint", "03U5":"Supersonic Red*", "0089":"Wind Chill Pearl*", "0796":"Wave Maker*" }, INT: { "FB21":"Black Fabric", "LE13":"Boulder Leather", "LE21":"Black Leather", "LD13":"Boulder Leather", "LD21":"Black Leather", "LA21":"Black Leather", "LB44":"Saddle Tan Leather", "LC15":"Shale Premium Leather", "EB21":"Black SofTex", "EB33":"Cockpit Red SofTex" },
+    extBy: {"06X3": [7947, 7951, 7957, 7946, 7948, 7949], "08X8": [7947, 7951, 7957, 7955, 7946, 7948, 7949], "01J9": [7947, 7955, 7951, 7957, 7946, 7948, 7949], "0796": [7953], "04Z2": [7947, 7957, 7951, 7949], "01G3": [7947, 7953, 7955, 7951, 7957, 7946, 7948, 7949], "0218": [7947, 7953, 7955, 7951, 7957, 7946, 7948, 7949], "03U5": [7947, 7955, 7951, 7946, 7948, 7949], "0089": [7955, 7951, 7957, 7948, 7949], "0040": [7947, 7953, 7946, 7948, 7949]},
+    intBy: {"FB21": [7947, 7946], "LA21": [7951], "LD13": [7949, 7948], "EB33": [7953], "LE13": [7947, 7946], "LE21": [7946, 7947], "LC15": [7955], "LB44": [7957], "LD21": [7949, 7948], "EB21": [7953]},
+    PC: {"03U5": "$475", "0089": "$475", "0796": "$695"},
+    INCLUDES: {"OF": ["SO"], "TD": ["TZ"]},
+    trims: {
+    "SR5": { codes: ["7946 · SR5 RWD","7947 · SR5 4x4"], fio: [
+      ["SV","SR5 Premium Package — 14-in. multimedia, SofTex, power-fold 3rd row","$2,085",[7946,7947]],
+      ["OF","TRD Off-Road Package — AT tires, 18-in. matte-black wheels","$1,750",[7947]],
+      ["TD","Tow Tech Package w/ wireless trailer camera","$1,050",[7946,7947]],
+      ["TZ","Tow Tech Package without trailer camera","$200",[7946,7947]],
+      ["MN","SR5 power tow mirrors","$290",[7946,7947]],
+      ["WS","Heated leather steering wheel","$150",[7946,7947]],
+      ["SO","Off-Road skid plate","$0",[7947]],
+      ["ST","TRD front skid plate","$390",[7947]] ] },
+    "Limited": { codes: ["7948 · Limited RWD","7949 · Limited 4x4"], fio: [
+      ["BK","Nightshade Package — black 20-in. wheels, black trim","$500",[7948,7949]],
+      ["OF","TRD Off-Road Package — 20-in. TRD matte-black wheels, off-road tune","$2,675",[7949]],
+      ["BU","Captain's chairs — second row","$350",[7948,7949]],
+      ["SR","Panoramic roof","$500",[7948,7949]],
+      ["AH","Auto-leveling LED headlamps","$195",[7948,7949]],
+      ["EJ","JBL Premium Audio — 14 speakers, wireless charging","$720",[7948,7949]],
+      ["MQ","Power tow mirrors","$290",[7948,7949]],
+      ["TD","Tow Tech Package w/ wireless trailer camera","$1,050",[7948,7949]],
+      ["TZ","Tow Tech Package without trailer camera","$200",[7948,7949]],
+      ["SO","Off-Road skid plate","$0",[7949]],
+      ["ST","TRD front skid plate","$390",[7949]] ] },
+    "Platinum": { codes: ["7951 · Platinum 4x4"], fio: [
+      ["OF","TRD Off-Road Package — 20-in. TRD matte-black wheels, off-road tune","$2,820",[7951]],
+      ["NF","Rear air suspension","$1,050",[7951]],
+      ["RB","Power running boards","$1,005",[7951]],
+      ["HU","10-in. Head-Up Display","$600",[7951]],
+      ["MQ","Power tow mirrors","$290",[7951]],
+      ["TD","Tow Tech Package w/ wireless trailer camera","$850",[7951]],
+      ["SO","Off-Road skid plate","$0",[7951]],
+      ["ST","TRD front skid plate","$390",[7951]] ] },
+    "TRD Pro": { codes: ["7953 · TRD Pro 4x4"], fio: [
+      ["SR","Panoramic roof","$500",[7953]],
+      ["MQ","Power tow mirrors","$290",[7953]],
+      ["TD","Tow Tech Package w/ wireless trailer camera","$850",[7953]] ] },
+    "1794 Edition": { codes: ["7957 · 1794 Edition 4x4"], fio: [
+      ["OF","TRD Off-Road Package — 20-in. TRD matte-black wheels, AT tires","$2,135",[7957]],
+      ["NF","Rear air suspension","$1,050",[7957]],
+      ["RB","Power running boards","$1,005",[7957]],
+      ["HU","10-in. Head-Up Display","$600",[7957]],
+      ["LM","1794 Grade Package w/ power tow mirrors","$290",[7957]],
+      ["TD","Tow Tech Package w/ wireless trailer camera","$850",[7957]],
+      ["SO","Off-Road skid plate","$0",[7957]],
+      ["ST","TRD front skid plate","$390",[7957]] ] },
+    "Capstone": { codes: ["7955 · Capstone 4x4"], fio: [
+      ["NF","Rear air suspension","$1,050",[7955]],
+      ["CT","Capstone Grade Package w/ power tow mirrors","$290",[7955]],
+      ["TD","Tow Tech Package w/ wireless trailer camera","$850",[7955]] ] }
+  }},
+  "Highlander": { year: 2026, byCode: true, EXT: { "08X8":"Blueprint", "0218":"Midnight Black Metallic", "03T3":"Ruby Flare Pearl*", "01L5":"Heavy Metal*", "0089":"Wind Chill Pearl*" }, INT: { "EB20":"Black SofTex/Fabric", "EB10":"Graphite SofTex", "EA20":"Black SofTex/Fabric", "LB20":"Black Leather", "LB10":"Graphite Leather", "LA20":"Black Leather & Dinamica", "LA10":"Graphite Leather", "LA41":"Glazed Caramel Leather" },
+    extBy: {"03T3": [6953, 6959, 6957, 6956, 6965, 6966, 6967], "08X8": [6953, 6959, 6957, 6956, 6965, 6966, 6967], "01L5": [6953, 6959, 6957, 6956, 6965, 6966, 6967], "0089": [6953, 6959, 6957, 6956, 6965, 6966, 6967], "0218": [6953, 6959, 6957, 6956, 6965, 6966, 6967]},
+    intBy: {"EB20": [6953, 6965], "LB20": [6966, 6956], "EB10": [6953, 6965], "LA20": [6957, 6967], "LA41": [6957, 6967], "LA10": [6957, 6967], "LB10": [6966, 6956], "EA20": [6959]},
+    PC: {"03T3": "$475", "01L5": "$475", "0089": "$475"},
+    trims: {
+    "XLE": { codes: ["6953 · XLE AWD","6965 · Hybrid XLE AWD"], fio: [
+      ["BS","Bench seat — 8-passenger (no charge)","$0",[6953,6965]],
+      ["EE","12.3-in. Toyota Audio Multimedia (verify hybrid availability)","$735",[6953]] ] },
+    "XSE": { codes: ["6959 · XSE AWD"], fio: [
+      ["EN","12.3-in. Toyota Audio Multimedia w/ JBL","$1,375",[6959]] ] },
+    "Limited": { codes: ["6956 · Limited AWD","6966 · Hybrid Limited AWD"], fio: [
+      ["BS","Bench seat — 8-passenger (no charge, gas only)","$0",[6956]],
+      ["SB","Panoramic View Monitor","$850",[6956,6966]] ] },
+    "Platinum": { codes: ["6957 · Platinum AWD","6967 · Hybrid Platinum AWD"], fio: [
+ ] }
+  }},
+  "Land Cruiser": { year: 2027, byCode: true, EXT: { "0040":"Ice Cap", "04V8":"Meteor Shower", "0229":"Inked", "01L7":"Underground", "08X0":"Heritage Blue", "0089":"Wind Chill Pearl*", "02ZC":"Trail Dust/Grayscape*", "02ZD":"Heritage Blue/Grayscape*" }, INT: { "FB20":"Black Fabric", "EB20":"Black SofTex", "EB40":"Java SofTex", "LB20":"Black Leather", "LB40":"Java Leather" },
+    extBy: {"08X0": [6167], "02ZC": [6167], "02ZD": [6167], "0229": [6167, 6165], "0089": [6167], "04V8": [6167, 6165], "0040": [6167, 6165], "01L7": [6167]},
+    intBy: {"EB40": [6167], "LB40": [6167], "FB20": [6165], "EB20": [6167], "LB20": [6167]},
+    PC: {"0089": "$475", "02ZC": "$350", "02ZD": "$350"},
+    trims: {
+    "1958": { codes: ["6165 · Land Cruiser 1958 4x4"], fio: [
+      ["BG","Rear bumper guard","$230",[6165]],
+      ["TL","Liftgate light","$200",[6165]],
+      ["SJ","High-mount air intake","$980",[6165]],
+      ["TX","Two-tone paint (verify — no two-tone color listed on 1958)","$350",[6165]] ] },
+    "Land Cruiser": { codes: ["6167 · Land Cruiser 4x4"], fio: [
+      ["PP","Land Cruiser Premium Package — 14-sp JBL, more","$4,905",[6167]],
+      ["MR","Power tilt/slide moonroof","$850",[6167]],
+      ["AA","20-in. gray-painted alloy wheels","$1,240",[6167]],
+      ["CC","Console cool box","$170",[6167]],
+      ["BG","Rear bumper guard","$230",[6167]],
+      ["TL","Liftgate light","$200",[6167]],
+      ["SJ","High-mount air intake","$980",[6167]] ] }
+  }},
+  "Crown": { year: 2027, byCode: true, EXT: { "0229":"Inked", "01L6":"Storm Cloud", "03U9":"Finish Line Red*", "04Y6":"Bronze Age*", "01L5":"Heavy Metal*", "0090":"Oxygen White*", "02ZA":"Heavy Metal/Black bi-tone*", "02ZR":"Finish Line Red/Black bi-tone*", "02XW":"Oxygen White/Black bi-tone*", "02XZ":"Bronze Age/Black bi-tone*" }, INT: { "LA20":"Black Leather", "LA25":"Saddle Tan Leather", "LB20":"Black Leather" },
+    extBy: {"03U9": [4015, 4020, 4030], "04Y6": [4015, 4020, 4030], "01L5": [4015, 4020, 4030], "0090": [4015, 4020, 4030], "02ZA": [4030], "0229": [4015, 4020, 4025, 4030], "01L6": [4020, 4030, 4015, 4025], "02ZR": [4030], "02XW": [4030], "02XZ": [4030]},
+    intBy: {"LA20": [4020, 4015, 4030], "LA25": [4020, 4030], "LB20": [4025]},
+    PC: {"03U9": "$475", "04Y6": "$475", "01L5": "$475", "0090": "$475", "02ZA": "$1,025", "02ZR": "$1,025", "02XW": "$1,025", "02XZ": "$1,025"},
+    trims: {
+    "XLE": { codes: ["4015 · XLE AWD"], fio: [
+ ] },
+    "Nightshade": { codes: ["4025 · Nightshade AWD"], fio: [
+ ] },
+    "Limited": { codes: ["4020 · Limited AWD"], fio: [
+ ] },
+    "Platinum": { codes: ["4030 · Platinum AWD"], fio: [
+ ] }
+  }},
+  "Crown Signia": { year: 2026, byCode: true, EXT: { "0202":"Black", "01L6":"Storm Cloud", "04Y6":"Bronze Age*", "0090":"Oxygen White*", "03U9":"Finish Line Red*", "02XY":"Storm Cloud/Black roof*", "02XW":"Oxygen White/Black roof*", "02ZR":"Finish Line Red/Black roof*", "02XZ":"Bronze Age/Black roof*" }, INT: { "LA20":"Black Leather", "LA40":"Saddle Tan Leather" },
+    extBy: {"01L6": [4041, 4040], "04Y6": [4041, 4040], "0090": [4041, 4040], "0202": [4041, 4040], "03U9": [4041, 4040], "02XY": [4041], "02XW": [4041], "02ZR": [4041], "02XZ": [4041]},
+    intBy: {"LA20": [4041, 4040], "LA40": [4041, 4040]},
+    PC: {"04Y6": "$475", "0090": "$475", "03U9": "$475", "02XY": "$500", "02XW": "$975", "02ZR": "$975", "02XZ": "$975"},
+    trims: {
+    "XLE": { codes: ["4040 · XLE AWD"], fio: [
+ ] },
+    "Limited": { codes: ["4041 · Limited AWD"], fio: [
+      ["AT","Advanced Tech Package — PVM, Lane Change Assist, Traffic Jam Assist","$1,865",[4041]] ] }
+  }},
+  "GR Corolla": { year: 2026, byCode: true, EXT: { "0040":"Ice Cap", "0202":"Black", "06X9":"Gravel", "03U5":"Supersonic Red*", "01L5":"Heavy Metal*", "0228":"Zero Gravity*" }, INT: { "EA20":"Black Brin-Naub/Synthetic Leather, gray stitch", "EA30":"Black Brin-Naub/Synthetic Leather, red stitch", "EC30":"Black Brin-Naub/Synthetic Leather, red stitch" },
+    extBy: {"0228": [6285], "06X9": [6285], "03U5": [6281, 6280, 6286, 6287], "01L5": [6281, 6280, 6286, 6287], "0040": [6281, 6280, 6286, 6287], "0202": [6281, 6280, 6286, 6287]},
+    intBy: {"EC30": [6285], "EA20": [6281, 6280], "EA30": [6286, 6287]},
+    PC: {"03U5": "$475", "01L5": "$475", "0228": "$1,645"},
+    trims: {
+    "GR Corolla": { codes: ["6281 · GR Corolla 6MT","6280 · GR Corolla 8AT"], fio: [
+ ] },
+    "Premium Plus": { codes: ["6287 · Premium Plus 6MT","6286 · Premium Plus 8AT"], fio: [
+ ] },
+    "GRMN": { codes: ["6285 · GRMN Corolla 6MT (2-seat)"], fio: [
+ ] }
+  }},
+  "GR86": { year: 2027, byCode: true, EXT: { "0D4S":"Raven", "0P8Y":"Pavement", "0PBA":"Thunder", "0G1U":"Steel", "0WCH":"Trueno Blue", "0K1X":"Halo*", "0DCK":"Track bRED*" }, INT: { "AM20":"Black Fabric (base) / Black Ultrasuede & Leather (Premium)", "AM30":"Black Ultrasuede w/ Red Leather" },
+    extBy: {"0D4S": [6253, 6252, 6254, 6255], "0P8Y": [6253, 6252, 6254, 6255], "0PBA": [6253, 6252, 6254, 6255], "0G1U": [6253, 6252, 6254, 6255], "0K1X": [6253, 6252, 6254, 6255], "0WCH": [6253, 6252, 6254, 6255], "0DCK": [6253, 6252, 6254, 6255]},
+    intBy: {"AM20": [6253, 6252, 6254, 6255], "AM30": [6254, 6255]},
+    PC: {"0K1X": "$475", "0DCK": "$475"},
+    trims: {
+    "GR86": { codes: ["6253 · GR86 6MT","6252 · GR86 6AT"], fio: [
+      ["PP","Performance Package — Brembo brakes, SACHS dampers, 18-in. matte-black wheels","$2,020",[6252,6253]] ] },
+    "GR86 Premium": { codes: ["6255 · GR86 Premium 6MT","6254 · GR86 Premium 6AT"], fio: [
+      ["PP","Performance Package — Brembo brakes, SACHS dampers","$1,500",[6254,6255]],
+      ["AK","GR Aero Kit — front splitter, side skirts, rear diffuser","$2,700",[6254,6255]] ] }
+  }},
   "Grand Highlander": { year: 2026, byCode: true, EXT: { "01H5":"Cement", "01J9":"Celestial Silver Metallic", "01L6":"Storm Cloud", "0218":"Midnight Black Metallic", "08X8":"Blueprint", "01L5":"Heavy Metal*", "03T3":"Ruby Flare Pearl*", "0089":"Wind Chill Pearl*" }, INT: { "FB20":"Black Fabric w/Smoke Silver", "FB10":"Light Gray/Moonstone Fabric", "EA20":"Black SofTex", "EA10":"Light Gray SofTex", "LC20":"Black Leather", "LC10":"Light Gray Leather", "LB20":"Black Leather", "LB10":"Light Gray Leather", "LB40":"Portobello Leather", "LA20":"Black Leather & Ultrasuede", "LA10":"Light Gray Leather & Ultrasuede", "LA40":"Portobello Leather & Ultrasuede", "LD20":"Black Leather" },
     extBy: {"01L5": [6710, 6704, 6712, 6724, 6730, 6732], "01H5": [6732, 6730, 6733], "01J9": [6702, 6708, 6716, 6722, 6706, 6700, 6720], "01L6": [6702, 6708, 6710, 6704, 6712, 6730, 6732, 6724, 6716, 6722, 6706, 6700, 6720], "0089": [6702, 6708, 6710, 6704, 6712, 6732, 6730, 6724, 6716, 6722, 6706, 6700, 6720, 6733], "03T3": [6702, 6708, 6710, 6704, 6712, 6730, 6732, 6724, 6716, 6722, 6706, 6700, 6720], "0218": [6702, 6708, 6710, 6704, 6712, 6732, 6730, 6724, 6716, 6722, 6706, 6700, 6720, 6733], "08X8": [6710, 6704, 6702, 6708, 6712, 6730, 6732, 6724, 6716, 6722, 6706, 6700, 6720]},
     intBy: {"LB10": [6712], "LD20": [6733], "LB40": [6712], "LA20": [6730, 6732], "LA10": [6730, 6732], "FB20": [6706, 6700, 6720], "LB20": [6712], "LA40": [6732], "LC20": [6710, 6704, 6724], "FB10": [6706, 6700, 6720], "EA20": [6702, 6708, 6716, 6722], "LC10": [6710, 6704, 6724], "EA10": [6702, 6708, 6716, 6722]},
@@ -637,13 +798,13 @@ const ROWS = 6;
 const cells = '<td class="c"><span class="box must"></span></td><td class="c"><span class="box flex"></span></td><td class="c"><span class="box no"></span></td>';
 const mSel = document.getElementById('model'), tSel = document.getElementById('trim'), cSel = document.getElementById('code');
 mSel.add(new Option('Select model',''));
-['4Runner','bZ','bZ Woodland','C-HR','Camry','Corolla','Corolla Hatchback','Grand Highlander','Prius','Prius Plug-in Hybrid','RAV4','RAV4 Plug-in Hybrid','Sienna','Tacoma','Tundra'].forEach(function(m){ if(DATA[m]) mSel.add(new Option(m, m)); });
+['4Runner','bZ','bZ Woodland','C-HR','Camry','Corolla','Corolla Cross','Corolla Hatchback','Crown','Crown Signia','GR Corolla','GR86','Grand Highlander','Highlander','Land Cruiser','Prius','Prius Plug-in Hybrid','RAV4','RAV4 Plug-in Hybrid','Sequoia','Sienna','Tacoma','Tundra'].forEach(function(m){ if(DATA[m]) mSel.add(new Option(m, m)); });
 function wire(){
   Array.prototype.forEach.call(document.querySelectorAll('.line:not(#today):not(#vyear):not(#vmodel):not(#vtrim):not(#vcode), td.w'), function(el){ el.setAttribute('contenteditable','true'); });
   Array.prototype.forEach.call(document.querySelectorAll('.box'), function(b){ if(!b.dataset.w){ b.dataset.w=1; b.addEventListener('click',function(){ if(b.classList.contains('dis')||b.classList.contains('lock')) return; b.classList.toggle('on'); b.textContent = b.classList.contains('on') ? '\u2713' : ''; applyIncludes(); applyNo(); fillDealer(); }); } });
 }
 (function(){ var d=new Date(); document.getElementById('today').textContent=(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear(); })();
-const PCCOLORS = {"01L5":1,"03T3":1,"0089":1,"03U5":1,"0M73":1,"0796":1,"0M22":1,"02SQ":1,"02VP":1,"02TB":1,"08Z3":1,"02YJ":1,"02PS":1,"0M04":1,"02SC":1,"0M93":1,"0MA3":1,"0MA4":1,"0MA5":1,"0MA6":1,"0M87":1,"0MA7":1,"0D29":1,"0M67":1,"02YY":1,"03U9":1,"0M71":1,"02ZR":1,"0MA0":1,"0MA1":1,"0MA2":1};
+const PCCOLORS = {"01L5":1,"03T3":1,"0089":1,"03U5":1,"0M73":1,"0796":1,"0M22":1,"02SQ":1,"02VP":1,"02TB":1,"08Z3":1,"02YJ":1,"02PS":1,"0M04":1,"02SC":1,"0M93":1,"0MA3":1,"0MA4":1,"0MA5":1,"0MA6":1,"0M87":1,"0MA7":1,"0D29":1,"0M67":1,"02YY":1,"03U9":1,"0M71":1,"02ZR":1,"0MA0":1,"0MA1":1,"0MA2":1,"0090":1,"0228":1,"02XW":1,"02XY":1,"02XZ":1,"02ZA":1,"02ZC":1,"02ZD":1,"04Y6":1,"0D17":1,"0D22":1,"0D23":1,"0D25":1,"0D28":1,"0DCK":1,"0K1X":1};
 function setBox(b,on){ b.classList.toggle('on',on); b.textContent = on ? '\u2713' : ''; }
 function fillDealer(){
   var mc = (cSel.value||'').split(' ')[0];
