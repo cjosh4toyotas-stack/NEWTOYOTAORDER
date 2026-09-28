@@ -48,11 +48,13 @@ Source for every value is the Options & Packages and Colors tabs of Toyota's dea
 - 2026 Sienna — LE, XLE, XSE, Limited, Woodland Edition, Platinum
 - 2026 Tacoma — SR, SR5, TRD PreRunner, TRD Sport, TRD Off-Road, Limited, Trailhunter, TRD Pro (27 model codes; i-FORCE MAX variants are listed under their trim as model codes)
 - 2026 Tundra — SR, SR5, Limited, Platinum, 1794 Edition, TRD Pro, Capstone (32 model codes; i-FORCE MAX variants listed under their trim)
+- 2026 RAV4 (hybrid) — LE, SE, XLE Premium, Woodland, XSE, Limited (9 model codes)
+- 2026 RAV4 Plug-in Hybrid — SE, Woodland, XSE, GR SPORT (4 model codes)
 - 2026 4Runner — SR5, TRD Sport, TRD Sport Premium, TRD Off-Road, TRD Off-Road Premium, Limited, Platinum, Trailhunter, TRD Pro (16 model codes)
 
-### Model-code-driven data (Tacoma, Tundra, 4Runner)
+### Model-code-driven data (Tacoma, Tundra, 4Runner, RAV4, RAV4 Plug-in Hybrid)
 
-Tacoma options, packages, and colors vary by model code, not just trim, so the Tacoma, Tundra, and 4Runner blocks use `byCode: true`. Each FIO line carries a fourth element — the model codes it applies to — and colors are keyed by model code in `extBy` / `intBy`. The sheet stays blank until a model code is chosen, then loads only what Toyota lists for that code. Packages that bundle stand-alone options are mapped in `INCLUDES` (e.g. `OF` → CY, MR, EE, EF); when a package is marked Must have or Flexible, those option lines gray out and read "Included in OF." The PC (special color) line is generated automatically from the extra-cost colors available on that code, with price from the `PC` map.
+Tacoma options, packages, and colors vary by model code, not just trim, so the Tacoma, Tundra, 4Runner, and both RAV4 blocks use `byCode: true`. Each FIO line carries a fourth element — the model codes it applies to — and colors are keyed by model code in `extBy` / `intBy`. The sheet stays blank until a model code is chosen, then loads only what Toyota lists for that code. Packages that bundle stand-alone options are mapped in `INCLUDES` (e.g. `OF` → CY, MR, EE, EF); when a package is marked Must have or Flexible, those option lines gray out and read "Included in OF." The PC (special color) line is generated automatically from the extra-cost colors available on that code, with price from the `PC` map.
 
 Long option lists (more than 10 lines) switch to a compact row height so an SR5 CrewMax with 24 lines still prints on one page.
 

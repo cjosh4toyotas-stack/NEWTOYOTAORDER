@@ -89,7 +89,7 @@
   @media screen{ [contenteditable]:hover{background:#F3F7FC} [contenteditable]:focus{background:#EAF2FB} .box{cursor:pointer} }
   .box{font-size:11px;line-height:10px;text-align:center;font-weight:bold;color:var(--red)}
   @media screen{ .box:hover{background:#EAF2FB} }
-  select.cs{outline:none;flex:1;font:inherit;font-size:10.5pt;border:none;border-bottom:1px solid var(--ink);background:transparent;padding:0 0 0 2px;margin:0;color:var(--ink);height:18px;line-height:18px;-webkit-appearance:none;appearance:none;border-radius:0}
+  select.cs{outline:none;flex:1;text-overflow:ellipsis;overflow:hidden;font:inherit;font-size:10.5pt;border:none;border-bottom:1px solid var(--ink);background:transparent;padding:0 0 0 2px;margin:0;color:var(--ink);height:18px;line-height:18px;-webkit-appearance:none;appearance:none;border-radius:0}
   @media screen{ select.cs:hover{background:#F3F7FC} .seg b.mirror{display:none} }
   @media print{ select.cs{display:none} }
   th.must,.box.must{color:#1B8A3C;border-color:#1B8A3C}
@@ -222,6 +222,51 @@
 
 <script>
 const DATA = {
+  "RAV4": { year: 2026, byCode: true, EXT: { "0040":"Ice Cap", "04V8":"Meteor Shower", "01L6":"Storm Cloud", "0218":"Midnight Black Metallic", "08X8":"Blueprint", "06X7":"Everest", "01M6":"Urban Rock", "03T3":"Ruby Flare Pearl*", "0089":"Wind Chill Pearl*", "0M22":"Storm Cloud/Black roof*", "02SQ":"Meteor Shower/Black roof*", "02VP":"Wind Chill/Black roof*" }, INT: { "FB20":"Black Fabric", "FC20":"Black/Blue Fabric", "EE10":"Light Gray SofTex", "EE20":"Black SofTex", "EE40":"Harvest Beige SofTex", "EB20":"Black SofTex", "EB60":"Mineral SofTex", "EC20":"Black/Blue SofTex/Fabric", "EA10":"Light Gray SofTex", "EA20":"Black SofTex", "EA40":"Harvest Beige SofTex" },
+    extBy: {"0M22": [4530], "06X7": [4437], "04V8": [4534, 4435, 4521, 4527, 4444, 4524, 4523], "01M6": [4437], "0089": [4527, 4444, 4534], "01L6": [4527, 4444, 4524, 4523, 4437, 4534, 4435, 4521], "0218": [4435, 4521, 4527, 4444, 4534, 4437, 4524, 4523, 4530], "03T3": [4435, 4521, 4527, 4444, 4534], "08X8": [4524, 4523, 4534, 4527, 4444], "0040": [4527, 4444, 4524, 4523, 4437, 4435, 4521], "02VP": [4530], "02SQ": [4530]},
+    intBy: {"EE10": [4527, 4444], "EA40": [4534], "EE20": [4527, 4444], "EB60": [4437], "EA20": [4534], "EA10": [4534], "EB20": [4437], "FC20": [4524, 4523], "FB20": [4435, 4521], "EC20": [4530], "EE40": [4527, 4444]},
+    PC: {"03T3":"$475","0089":"$475","0M22":"$500","02SQ":"$500","02VP":"$975"},
+    trims: {
+    "LE": { codes: ["4521 · LE FWD","4435 · LE AWD"], fio: [
+ ] },
+    "SE": { codes: ["4523 · SE FWD","4524 · SE AWD"], fio: [
+      ["MR","Moonroof Package — power tilt/slide moonroof","$850",[4523,4524]],
+      ["CY","Weather Package — heated steering wheel, rain-sensing wipers","$375",[4523,4524]],
+      ["CP","Convenience Package — power liftgate","$400",[4523,4524]] ] },
+    "XLE Premium": { codes: ["4527 · XLE Premium FWD","4444 · XLE Premium AWD"], fio: [
+      ["SR","Panoramic Moonroof Package — pano roof, digital rearview mirror","$1,850",[4527,4444]],
+      ["DA","XLE Driver Assist Package — FCTA, LCA, Traffic Jam Assist","$650",[4527,4444]],
+      ["CY","Weather Package — heated steering wheel, rain-sensing wipers","$375",[4527,4444]] ] },
+    "Woodland": { codes: ["4437 · Woodland AWD"], fio: [
+      ["MR","Moonroof Package — power tilt/slide moonroof","$850",[4437]] ] },
+    "XSE": { codes: ["4530 · XSE AWD"], fio: [
+      ["SR","Panoramic Moonroof Package — pano roof, digital rearview mirror","$700",[4530]],
+      ["DA","XSE Driver Assist Package — FCTA, LCA, Traffic Jam Assist","$420",[4530]],
+      ["EJ","JBL Premium Audio Package — 9 speakers, subwoofer","$620",[4530]],
+      ["CY","Weather Package — heated steering wheel, rain-sensing wipers","$375",[4530]] ] },
+    "Limited": { codes: ["4534 · Limited AWD"], fio: [
+      ["WU","20-in. Wheel Package — 20-in. wheels, larger spare","$1,240",[4534]],
+      ["HU","10-in. color Head-Up Display","$600",[4534]] ] }
+  }},
+  "RAV4 Plug-in Hybrid": { year: 2026, byCode: true, EXT: { "0040":"Ice Cap", "04V8":"Meteor Shower", "01L6":"Storm Cloud", "0218":"Midnight Black Metallic", "08X8":"Blueprint", "06X7":"Everest", "01M6":"Urban Rock", "0M22":"Storm Cloud/Black roof*", "02SQ":"Meteor Shower/Black roof*", "02VP":"Wind Chill/Black roof*", "02TB":"Supersonic Red/Black roof*" }, INT: { "FC20":"Black/Blue Fabric", "EB20":"Black SofTex", "EB60":"Mineral SofTex", "EC20":"Black/Blue SofTex/Fabric", "ED20":"Black/Red Ultrasuede & SofTex" },
+    extBy: {"02TB": [4538], "0218": [4537, 4538, 4550, 4544], "06X7": [4537], "0M22": [4550, 4538], "02SQ": [4550], "01M6": [4537], "08X8": [4544], "0040": [4537, 4544], "02VP": [4550, 4538], "04V8": [4544], "01L6": [4544, 4537]},
+    intBy: {"ED20": [4538], "FC20": [4544], "EB60": [4537], "EC20": [4550], "EB20": [4537]},
+    PC: {"0M22":"$500","02SQ":"$500","02VP":"$975","02TB":"$975"},
+    trims: {
+    "SE": { codes: ["4544 · SE AWD"], fio: [
+      ["MR","Moonroof Package — power tilt/slide moonroof","$850",[4544]],
+      ["CY","Weather Package — heated steering wheel, rain-sensing wipers","$375",[4544]],
+      ["CP","Convenience Package — power liftgate","$400",[4544]] ] },
+    "Woodland": { codes: ["4537 · Woodland AWD"], fio: [
+      ["MR","Moonroof Package — power tilt/slide moonroof","$850",[4537]] ] },
+    "XSE": { codes: ["4550 · XSE AWD"], fio: [
+      ["SR","Panoramic Moonroof Package — pano roof, digital rearview mirror","$1,850",[4550]],
+      ["DA","Driver Assist Package — Advanced Park, paddle shifters, HUD","$1,170",[4550]],
+      ["EJ","JBL Premium Audio Package — 9 speakers, subwoofer, 800W amp","$620",[4550]],
+      ["CY","Weather Package — heated steering wheel, rain-sensing wipers","$375",[4550]] ] },
+    "GR SPORT": { codes: ["4538 · GR SPORT AWD"], fio: [
+      ["AS","All-season tires","$0",[4538]] ] }
+  }},
   "4Runner": { year: 2026, byCode: true, EXT: { "0040":"Ice Cap", "01L7":"Underground", "0202":"Black", "01L0":"Cutting Edge", "08X0":"Heritage Blue", "06X7":"Everest", "03U5":"Supersonic Red*", "0089":"Wind Chill Pearl*", "0796":"Wave Maker*" }, INT: { "FA20":"Black Fabric", "FA10":"Boulder Fabric", "FB11":"Black/Boulder Fabric w/Anodized Blue", "FB12":"Black/Boulder Fabric w/Smoke Silver", "EA20":"Black SofTex", "LA20":"Black Leather", "LA45":"Portobello Leather", "LB81":"Dark Navy Premium Leather", "EB63":"Mineral SofTex", "EC22":"Black SofTex", "EC30":"Cockpit Red SofTex" },
     extBy: {"0796": [8634], "06X7": [8670, 8628, 8672, 8630, 8636], "01L7": [8642, 8664, 8648, 8668, 8671, 8643, 8673, 8644, 8670, 8628, 8672, 8630, 8632, 8638, 8634, 8636], "08X0": [8642, 8664, 8671, 8643, 8673, 8644, 8670, 8628, 8672, 8630, 8648, 8668, 8632, 8638], "01L0": [8642, 8664, 8671, 8643, 8673, 8644, 8670, 8628, 8672, 8630, 8638], "0202": [8642, 8664, 8671, 8643, 8673, 8644, 8670, 8628, 8672, 8630, 8648, 8668, 8632, 8638, 8634, 8636], "0040": [8642, 8664, 8670, 8628, 8672, 8634, 8636, 8630], "0089": [8648, 8668, 8671, 8643, 8673, 8644, 8632, 8638], "03U5": [8642, 8664, 8671, 8643, 8670, 8628, 8673, 8644, 8672, 8630, 8648, 8668, 8632, 8638]},
     intBy: {"LA20": [8632, 8648, 8668], "FA20": [8642, 8664], "EC22": [8634], "EC30": [8634], "EA20": [8672, 8630, 8673, 8644], "LA45": [8632, 8648, 8668], "FA10": [8642, 8664], "LB81": [8638], "EB63": [8636], "FB11": [8628, 8671, 8643, 8670], "FB12": [8628, 8671, 8643, 8670]},
@@ -434,13 +479,13 @@ const ROWS = 6;
 const cells = '<td class="c"><span class="box must"></span></td><td class="c"><span class="box flex"></span></td><td class="c"><span class="box no"></span></td>';
 const mSel = document.getElementById('model'), tSel = document.getElementById('trim'), cSel = document.getElementById('code');
 mSel.add(new Option('Select model',''));
-['4Runner','Sienna','Tacoma','Tundra'].forEach(function(m){ if(DATA[m]) mSel.add(new Option(m, m)); });
+['4Runner','RAV4','RAV4 Plug-in Hybrid','Sienna','Tacoma','Tundra'].forEach(function(m){ if(DATA[m]) mSel.add(new Option(m, m)); });
 function wire(){
   Array.prototype.forEach.call(document.querySelectorAll('.line:not(#today):not(#vyear):not(#vmodel):not(#vtrim):not(#vcode), td.w'), function(el){ el.setAttribute('contenteditable','true'); });
   Array.prototype.forEach.call(document.querySelectorAll('.box'), function(b){ if(!b.dataset.w){ b.dataset.w=1; b.addEventListener('click',function(){ if(b.classList.contains('dis')||b.classList.contains('lock')) return; b.classList.toggle('on'); b.textContent = b.classList.contains('on') ? '\u2713' : ''; applyIncludes(); applyNo(); }); } });
 }
 (function(){ var d=new Date(); document.getElementById('today').textContent=(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear(); })();
-const PCCOLORS = {"01L5":1,"03T3":1,"0089":1,"03U5":1,"0M73":1,"0796":1};
+const PCCOLORS = {"01L5":1,"03T3":1,"0089":1,"03U5":1,"0M73":1,"0796":1,"0M22":1,"02SQ":1,"02VP":1,"02TB":1};
 function setBox(b,on){ b.classList.toggle('on',on); b.textContent = on ? '\u2713' : ''; }
 function applyNo(){
   Array.prototype.forEach.call(document.querySelectorAll('#fio tr'), function(tr){
