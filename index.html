@@ -43,7 +43,7 @@
   .seg span{display:flex;flex:1;align-items:flex-end;margin-right:18px}
   .seg span:last-child{margin-right:0}
   .seg i{font-style:normal;color:var(--mid);font-size:10pt;margin-right:6px}
-  .seg b{flex:1;border-bottom:1px solid var(--ink);height:18px;font-weight:normal;font-size:10.5pt;padding-left:2px}
+  .seg b{flex:1;border-bottom:1px solid var(--ink);height:18px;font-weight:normal;font-size:10.5pt;padding-left:2px;white-space:nowrap;overflow:hidden}
   td.w{border-bottom:1px solid var(--ink);height:22px}
   td.gap{width:20px;border-bottom:none}
   tr.avail{display:none}
@@ -222,6 +222,92 @@
 
 <script>
 const DATA = {
+  "Camry": { year: 2027, byCode: true, EXT: { "0040":"Ice Cap", "01J9":"Celestial Silver Metallic", "01L7":"Underground", "0218":"Midnight Black Metallic", "0795":"Ocean Gem", "08Q4":"Reservoir Blue", "03U5":"Supersonic Red*", "08Z3":"Dark Cosmos*", "01L5":"Heavy Metal*", "0089":"Wind Chill Pearl*", "02YJ":"Heavy Metal/Black roof*", "02PS":"Wind Chill/Black roof*", "0M04":"Ocean Gem/Black roof*", "02SC":"Supersonic Red/Black roof*" }, INT: { "FA20":"Black Fabric", "FA10":"Boulder Fabric", "EA20":"Black SofTex/Fabric", "EA10":"Boulder SofTex/Fabric", "LA20":"Black Leather & Dinamica", "LA10":"Light Gray Leather & Dinamica", "LB20":"Black Leather", "LB30":"Cockpit Red Leather" },
+    extBy: {"03U5": [2560, 2555, 2561, 2553, 2557, 2556, 2552, 2559, 2551, 2558], "08Z3": [2560, 2555, 2561, 2553, 2557, 2556], "0795": [2560, 2555, 2561, 2553, 2557, 2556, 2552, 2559], "08Q4": [2560, 2555, 2561, 2553, 2557, 2556, 2552, 2559], "0218": [2560, 2555, 2561, 2553, 2557, 2556, 2552, 2559, 2551, 2558], "01L7": [2560, 2555, 2561, 2553, 2557, 2556, 2552, 2559], "01L5": [2560, 2555, 2561, 2553, 2557, 2556], "01J9": [2552, 2559], "0040": [2561, 2553, 2552, 2559, 2551, 2558], "0089": [2560, 2555, 2557, 2556], "02YJ": [2557, 2556], "02PS": [2557, 2556], "0M04": [2557, 2556], "02SC": [2557, 2556]},
+    intBy: {"LB30": [2557, 2556], "EA20": [2561, 2553, 2551, 2558], "LB20": [2557, 2556], "FA20": [2552, 2559], "LA10": [2560, 2555], "LA20": [2560, 2555], "FA10": [2552, 2559], "EA10": [2561, 2553]},
+    PC: {"03U5": "$475", "08Z3": "$475", "01L5": "$475", "0089": "$475", "02YJ": "$975", "02PS": "$975", "0M04": "$500", "02SC": "$975"},
+    INCLUDES: {"PM": ["PR"], "QP": ["PR", "PM"]},
+    trims: {
+    "LE": { codes: ["2559 · LE FWD","2552 · LE AWD"], fio: [
+      ["CY","Cold Weather Package — heated steering wheel, heated front seats","$610",[2552,2559]],
+      ["CP","Convenience Package — auto-dim mirror w/ HomeLink, Smart Key, more","$1,050",[2552,2559]],
+      ["SR","Power tilt/slide moonroof","$870",[2552,2559]] ] },
+    "SE": { codes: ["2561 · SE FWD","2553 · SE AWD"], fio: [
+      ["CY","Cold Weather Package — heated wheel w/ paddle shifters, heated seats","$500",[2561,2553]],
+      ["CP","Convenience Package — auto-dim mirror w/ HomeLink, Smart Key","$600",[2561,2553]],
+      ["UP","Multimedia Upgrade Package — 12.3-in. touchscreen","$735",[2561,2553]],
+      ["SR","Power tilt/slide moonroof","$870",[2561,2553]] ] },
+    "Nightshade": { codes: ["2558 · Nightshade FWD","2551 · Nightshade AWD"], fio: [
+      ["CY","Cold Weather Package — heated wheel w/ paddle shifters, heated seats","$500",[2558,2551]],
+      ["CP","Convenience Package — auto-dim mirror w/ HomeLink, Smart Key","$600",[2558,2551]],
+      ["UP","Multimedia Upgrade Package — 12.3-in. touchscreen","$735",[2558,2551]],
+      ["SR","Power tilt/slide moonroof","$870",[2558,2551]],
+      ["PM","Premium Package — pano roof, JBL audio (Toyota lists on 2558; verify)","$3,810",[2558]],
+      ["QP","Premium Plus Package (Toyota lists on 2558; verify)","$4,760",[2558]] ] },
+    "XLE": { codes: ["2560 · XLE FWD","2555 · XLE AWD"], fio: [
+      ["PM","Premium Package — pano roof, JBL audio, more","$3,810",[2555,2560]],
+      ["QP","Premium Plus Package — Premium + more","$4,760",[2555,2560]],
+      ["PR","Panoramic glass roof w/ front moonroof","$1,330",[2555,2560]] ] },
+    "XSE": { codes: ["2557 · XSE FWD","2556 · XSE AWD"], fio: [
+      ["PM","Premium Package — pano roof, JBL audio, more (FWD only per Toyota; verify AWD)","$3,810",[2557]],
+      ["QP","Premium Plus Package (FWD only per Toyota; verify AWD)","$4,760",[2557]],
+      ["PR","Panoramic glass roof w/ front moonroof","$1,330",[2557,2556]] ] }
+  }},
+  "Corolla": { year: 2027, byCode: true, EXT: { "0040":"Ice Cap", "01F7":"Classic Silver Metallic", "01K3":"Celestite", "01L7":"Underground", "0229":"Inked", "08X8":"Blueprint", "03T3":"Ruby Flare Pearl*", "0089":"Wind Chill Pearl*", "0M93":"Blueprint/Inked roof*", "0MA3":"Ice Cap/Inked roof*", "0MA4":"Classic Silver/Inked roof*", "0MA5":"Celestite/Inked roof*", "0MA6":"Underground/Inked roof*", "0M87":"Wind Chill/Inked roof*", "0MA7":"Ruby Flare/Inked roof*" }, INT: { "FB20":"Black Fabric", "FB10":"Light Gray Fabric", "FB00":"Macadamia/Mocha Fabric", "FC26":"Black/Red Premium Fabric", "FC23":"Moonstone Premium Fabric", "EB20":"Black SofTex/Fabric", "EB26":"Black/Red SofTex/Fabric", "EA20":"Black SofTex", "EA00":"Macadamia/Mocha SofTex" },
+    extBy: {"01K3": [1852, 1883, 1882, 1864, 1866, 1892, 1886, 1887], "08X8": [1852, 1883, 1882, 1864, 1866, 1892, 1886, 1887], "0089": [1852, 1883, 1882, 1864, 1866, 1892, 1886, 1887], "0040": [1852, 1883, 1882, 1864, 1866, 1892, 1886, 1887], "03T3": [1852, 1883, 1882, 1864, 1866, 1892, 1886, 1887], "01F7": [1852, 1883, 1882, 1864, 1866, 1892, 1886, 1887], "0229": [1852, 1883, 1882, 1864, 1866, 1892, 1886, 1887], "01L7": [1852, 1883, 1882, 1864, 1866, 1892, 1886, 1887], "0M93": [1864, 1866], "0M87": [1864, 1866], "0MA3": [1864, 1866], "0MA7": [1864, 1866], "0MA4": [1864, 1866], "0MA5": [1864, 1866], "0MA6": [1864, 1866]},
+    intBy: {"EA20": [1892], "FB00": [1882, 1883, 1852], "FB10": [1852, 1883, 1882], "EA00": [1892], "EB26": [1866], "FC26": [1864, 1886, 1887], "EB20": [1866], "FC23": [1864, 1886, 1887], "FB20": [1852, 1883, 1882]},
+    PC: {"03T3": "$475", "0089": "$475", "0M93": "$500", "0MA3": "$500", "0MA4": "$500", "0MA5": "$500", "0MA6": "$500", "0M87": "$975", "0MA7": "$975"},
+    trims: {
+    "LE": { codes: ["1852 · LE FWD","1882 · Hybrid LE FWD","1883 · Hybrid LE AWD"], fio: [
+      ["LQ","LE Premium Package — Smart Key w/ push start, remote keyless entry","$1,135",[1852,1882,1883]] ] },
+    "SE": { codes: ["1864 · SE FWD","1886 · Hybrid SE FWD","1887 · Hybrid SE AWD"], fio: [
+      ["SO","SE Premium Package — wireless charging, 12.3-in. cluster, 10.5-in. multimedia","$965",[1864,1886,1887]] ] },
+    "XSE": { codes: ["1866 · XSE FWD"], fio: [
+      ["EN","JBL Premium Audio","$600",[1866]] ] },
+    "Hybrid XLE": { codes: ["1892 · Hybrid XLE FWD"], fio: [
+      ["EN","JBL Premium Audio","$600",[1892]] ] }
+  }},
+  "Prius": { year: 2027, byCode: true, EXT: { "01L0":"Cutting Edge", "01M2":"Guardian Gray", "0229":"Inked", "08Q4":"Reservoir Blue", "05C5":"Karashi", "03U5":"Supersonic Red*", "0089":"Wind Chill Pearl*" }, INT: { "FB10":"Light Gray Fabric", "FB20":"Gradient Black Fabric", "EA10":"Light Gray SofTex", "EA20":"Black SofTex", "EA24":"Black SofTex" },
+    extBy: {"05C5": [1216, 1266], "0229": [1216, 1223, 1266, 1263, 1225, 1265, 1227, 1268], "03U5": [1223, 1227, 1225, 1263, 1265, 1268], "01L0": [1223, 1227, 1225, 1263, 1265, 1268], "01M2": [1223, 1227, 1225, 1263, 1265, 1268], "08Q4": [1223, 1227, 1225, 1263, 1265, 1268], "0089": [1223, 1227, 1225, 1263, 1265, 1268, 1216, 1266]},
+    intBy: {"FB10": [1223, 1263], "EA10": [1227, 1268, 1225, 1265], "FB20": [1223, 1263], "EA20": [1227, 1268, 1225, 1265], "EA24": [1216, 1266]},
+    PC: {"03U5": "$475", "0089": "$475"},
+    trims: {
+    "LE": { codes: ["1223 · LE FWD","1263 · LE AWD"], fio: [
+      ["RC","Front & rear parking assist w/ automatic braking","$35",[1223,1263]] ] },
+    "XLE": { codes: ["1225 · XLE FWD","1265 · XLE AWD"], fio: [
+      ["DG","Digital Key","$275",[1225,1265]],
+      ["EE","12.3-in. Toyota Audio Multimedia","$735",[1225,1265]],
+      ["SR","Fixed glass roof","$1,000",[1225,1265]] ] },
+    "Nightshade": { codes: ["1216 · Nightshade FWD","1266 · Nightshade AWD"], fio: [
+      ["DG","Digital Key","$275",[1216,1266]],
+      ["EE","12.3-in. Toyota Audio Multimedia","$735",[1216,1266]],
+      ["SR","Fixed glass roof","$1,000",[1216,1266]] ] },
+    "Limited": { codes: ["1227 · Limited FWD","1268 · Limited AWD"], fio: [
+      ["LX","Limited Premium Package — Advanced Park, Panoramic View Monitor","$1,085",[1227,1268]],
+      ["DV","Digital rearview mirror","$200",[1227,1268]],
+      ["SD","Heated rear seats","$350",[1227,1268]] ] }
+  }},
+  "Prius Plug-in Hybrid": { year: 2027, byCode: true, EXT: { "01L0":"Cutting Edge", "01M2":"Guardian Gray", "0229":"Inked", "08Q4":"Reservoir Blue", "05C5":"Karashi", "03U5":"Supersonic Red*", "0089":"Wind Chill Pearl*" }, INT: { "FA23":"Black/Red Fabric", "EA22":"Black/Red SofTex", "EA24":"Black SofTex" },
+    extBy: {"01M2": [1235, 1237, 1239], "03U5": [1239, 1237, 1235], "01L0": [1235, 1237, 1239], "0089": [1239, 1237, 1235, 1233], "05C5": [1233], "0229": [1233, 1235, 1237, 1239], "08Q4": [1235, 1237, 1239]},
+    intBy: {"FA23": [1235], "EA22": [1239, 1237], "EA24": [1233]},
+    PC: {"03U5": "$475", "0089": "$475"},
+    trims: {
+    "SE": { codes: ["1235 · SE FWD"], fio: [
+      ["RC","Front & rear parking assist w/ automatic braking","$35",[1235]] ] },
+    "XSE": { codes: ["1237 · XSE FWD"], fio: [
+      ["DG","Digital Key","$275",[1237]],
+      ["EE","12.3-in. Toyota Audio Multimedia","$610",[1237]],
+      ["SR","Fixed glass roof","$1,000",[1237]] ] },
+    "Nightshade": { codes: ["1233 · Nightshade FWD"], fio: [
+      ["DG","Digital Key","$275",[1233]],
+      ["EE","12.3-in. Toyota Audio Multimedia","$610",[1233]],
+      ["SR","Fixed glass roof","$1,000",[1233]] ] },
+    "XSE Premium": { codes: ["1239 · XSE Premium FWD"], fio: [
+      ["LX","Advanced Technology Package — Advanced Park, Panoramic View Monitor","$1,085",[1239]],
+      ["GX","Solar charging roof","$610",[1239]],
+      ["DV","Digital rearview mirror","$200",[1239]],
+      ["SD","Heated rear seats","$350",[1239]] ] }
+  }},
   "RAV4": { year: 2026, byCode: true, EXT: { "0040":"Ice Cap", "04V8":"Meteor Shower", "01L6":"Storm Cloud", "0218":"Midnight Black Metallic", "08X8":"Blueprint", "06X7":"Everest", "01M6":"Urban Rock", "03T3":"Ruby Flare Pearl*", "0089":"Wind Chill Pearl*", "0M22":"Storm Cloud/Black roof*", "02SQ":"Meteor Shower/Black roof*", "02VP":"Wind Chill/Black roof*" }, INT: { "FB20":"Black Fabric", "FC20":"Black/Blue Fabric", "EE10":"Light Gray SofTex", "EE20":"Black SofTex", "EE40":"Harvest Beige SofTex", "EB20":"Black SofTex", "EB60":"Mineral SofTex", "EC20":"Black/Blue SofTex/Fabric", "EA10":"Light Gray SofTex", "EA20":"Black SofTex", "EA40":"Harvest Beige SofTex" },
     extBy: {"0M22": [4530], "06X7": [4437], "04V8": [4534, 4435, 4521, 4527, 4444, 4524, 4523], "01M6": [4437], "0089": [4527, 4444, 4534], "01L6": [4527, 4444, 4524, 4523, 4437, 4534, 4435, 4521], "0218": [4435, 4521, 4527, 4444, 4534, 4437, 4524, 4523, 4530], "03T3": [4435, 4521, 4527, 4444, 4534], "08X8": [4524, 4523, 4534, 4527, 4444], "0040": [4527, 4444, 4524, 4523, 4437, 4435, 4521], "02VP": [4530], "02SQ": [4530]},
     intBy: {"EE10": [4527, 4444], "EA40": [4534], "EE20": [4527, 4444], "EB60": [4437], "EA20": [4534], "EA10": [4534], "EB20": [4437], "FC20": [4524, 4523], "FB20": [4435, 4521], "EC20": [4530], "EE40": [4527, 4444]},
@@ -479,13 +565,13 @@ const ROWS = 6;
 const cells = '<td class="c"><span class="box must"></span></td><td class="c"><span class="box flex"></span></td><td class="c"><span class="box no"></span></td>';
 const mSel = document.getElementById('model'), tSel = document.getElementById('trim'), cSel = document.getElementById('code');
 mSel.add(new Option('Select model',''));
-['4Runner','RAV4','RAV4 Plug-in Hybrid','Sienna','Tacoma','Tundra'].forEach(function(m){ if(DATA[m]) mSel.add(new Option(m, m)); });
+['4Runner','Camry','Corolla','Prius','Prius Plug-in Hybrid','RAV4','RAV4 Plug-in Hybrid','Sienna','Tacoma','Tundra'].forEach(function(m){ if(DATA[m]) mSel.add(new Option(m, m)); });
 function wire(){
   Array.prototype.forEach.call(document.querySelectorAll('.line:not(#today):not(#vyear):not(#vmodel):not(#vtrim):not(#vcode), td.w'), function(el){ el.setAttribute('contenteditable','true'); });
   Array.prototype.forEach.call(document.querySelectorAll('.box'), function(b){ if(!b.dataset.w){ b.dataset.w=1; b.addEventListener('click',function(){ if(b.classList.contains('dis')||b.classList.contains('lock')) return; b.classList.toggle('on'); b.textContent = b.classList.contains('on') ? '\u2713' : ''; applyIncludes(); applyNo(); }); } });
 }
 (function(){ var d=new Date(); document.getElementById('today').textContent=(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear(); })();
-const PCCOLORS = {"01L5":1,"03T3":1,"0089":1,"03U5":1,"0M73":1,"0796":1,"0M22":1,"02SQ":1,"02VP":1,"02TB":1};
+const PCCOLORS = {"01L5":1,"03T3":1,"0089":1,"03U5":1,"0M73":1,"0796":1,"0M22":1,"02SQ":1,"02VP":1,"02TB":1,"08Z3":1,"02YJ":1,"02PS":1,"0M04":1,"02SC":1,"0M93":1,"0MA3":1,"0MA4":1,"0MA5":1,"0MA6":1,"0M87":1,"0MA7":1};
 function setBox(b,on){ b.classList.toggle('on',on); b.textContent = on ? '\u2713' : ''; }
 function applyNo(){
   Array.prototype.forEach.call(document.querySelectorAll('#fio tr'), function(tr){
@@ -510,6 +596,13 @@ function applyPC(){
   var pcRow=null;
   Array.prototype.forEach.call(document.querySelectorAll('#fio tr'), function(tr){ var c=tr.querySelector('td.code'); if(c && c.textContent.trim()==='PC') pcRow=tr; });
   if(!pcRow) return;
+  var m0 = DATA[mSel.value];
+  if(m0 && m0.byCode){ var t0=m0.trims[tSel.value], pcs0=colorList(m0,t0,'ext').filter(function(c){ return m0.PC[c]; }), ch=[];
+    Array.prototype.forEach.call(document.querySelectorAll('select.cs[data-kind="ext"]'), function(sel){ if(sel.value && m0.PC[sel.value] && ch.indexOf(sel.value)<0) ch.push(sel.value); });
+    var show0 = ch.length ? ch : pcs0.slice(0,3), lab = show0.map(function(c){ return m0.EXT[c].replace('*','')+' '+m0.PC[c]; }).join(', ');
+    if(!ch.length && pcs0.length>3) lab += ' + '+(pcs0.length-3)+' more';
+    var tds=pcRow.querySelectorAll('td.w'); if(tds[1]) tds[1].textContent='Special color — '+lab;
+    if(tds[2]) tds[2].textContent = (ch.length ? ch.map(function(c){return m0.PC[c];}) : pcs0.map(function(c){return m0.PC[c];})).filter(function(v,i,a){return a.indexOf(v)===i;}).join(' / '); }
   var boxes=pcRow.querySelectorAll('.box'), chosen=[];
   Array.prototype.forEach.call(document.querySelectorAll('select.cs[data-kind="ext"]'), function(sel){ if(sel.value) chosen.push(sel.value); });
   var pc=chosen.filter(function(c){ return PCCOLORS[c]; }).length, non=chosen.length-pc;
@@ -563,7 +656,10 @@ function render(){
   if(m.byCode && n && !fio.some(function(f){return f[0]==='PC';})){
     var pcs=colorList(m,t,'ext').filter(function(c){ return m.PC[c]; });
     if(pcs.length){ var prices=[]; pcs.forEach(function(c){ if(prices.indexOf(m.PC[c])<0) prices.push(m.PC[c]); });
-      fio=fio.concat([["PC","Special color — "+pcs.map(function(c){ return m.EXT[c].replace('*',''); }).join(', '),prices.join(' / ')]]); }
+      var chosen=[]; Array.prototype.forEach.call(document.querySelectorAll('select.cs[data-kind="ext"]'), function(sel){ if(sel.value && m.PC[sel.value] && chosen.indexOf(sel.value)<0) chosen.push(sel.value); });
+      var show = chosen.length ? chosen : pcs.slice(0,3), label = show.map(function(c){ return m.EXT[c].replace('*','')+' '+m.PC[c]; }).join(', ');
+      if(!chosen.length && pcs.length>3) label += ' + '+(pcs.length-3)+' more';
+      fio=fio.concat([["PC","Special color — "+label, chosen.length ? chosen.map(function(c){return m.PC[c];}).filter(function(v,i,a){return a.indexOf(v)===i;}).join(' / ') : prices.join(' / ')]]); }
   }
   const body = document.getElementById('fio'); body.innerHTML=''; body.className = fio.length>10 ? 'compact' : '';
   fio.forEach(function(f){ body.insertAdjacentHTML('beforeend',

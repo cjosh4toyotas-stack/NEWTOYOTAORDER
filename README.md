@@ -48,14 +48,18 @@ Source for every value is the Options & Packages and Colors tabs of Toyota's dea
 - 2026 Sienna — LE, XLE, XSE, Limited, Woodland Edition, Platinum
 - 2026 Tacoma — SR, SR5, TRD PreRunner, TRD Sport, TRD Off-Road, Limited, Trailhunter, TRD Pro (27 model codes; i-FORCE MAX variants are listed under their trim as model codes)
 - 2026 Tundra — SR, SR5, Limited, Platinum, 1794 Edition, TRD Pro, Capstone (32 model codes; i-FORCE MAX variants listed under their trim)
+- 2027 Camry — LE, SE, Nightshade, XLE, XSE (10 model codes)
+- 2027 Corolla — LE, SE, XSE, Hybrid XLE (8 model codes; hybrid LE/SE listed as codes under LE/SE)
+- 2027 Prius — LE, XLE, Nightshade, Limited (8 model codes)
+- 2027 Prius Plug-in Hybrid — SE, XSE, Nightshade, XSE Premium (4 model codes)
 - 2026 RAV4 (hybrid) — LE, SE, XLE Premium, Woodland, XSE, Limited (9 model codes)
 - 2026 RAV4 Plug-in Hybrid — SE, Woodland, XSE, GR SPORT (4 model codes)
 - 2026 4Runner — SR5, TRD Sport, TRD Sport Premium, TRD Off-Road, TRD Off-Road Premium, Limited, Platinum, Trailhunter, TRD Pro (16 model codes)
 
-### Model-code-driven data (Tacoma, Tundra, 4Runner, RAV4, RAV4 Plug-in Hybrid)
+### Model-code-driven data (all models except Sienna)
 
-Tacoma options, packages, and colors vary by model code, not just trim, so the Tacoma, Tundra, 4Runner, and both RAV4 blocks use `byCode: true`. Each FIO line carries a fourth element — the model codes it applies to — and colors are keyed by model code in `extBy` / `intBy`. The sheet stays blank until a model code is chosen, then loads only what Toyota lists for that code. Packages that bundle stand-alone options are mapped in `INCLUDES` (e.g. `OF` → CY, MR, EE, EF); when a package is marked Must have or Flexible, those option lines gray out and read "Included in OF." The PC (special color) line is generated automatically from the extra-cost colors available on that code, with price from the `PC` map.
+Tacoma options, packages, and colors vary by model code, not just trim, so every block except Sienna uses `byCode: true`. Each FIO line carries a fourth element — the model codes it applies to — and colors are keyed by model code in `extBy` / `intBy`. The sheet stays blank until a model code is chosen, then loads only what Toyota lists for that code. Packages that bundle stand-alone options are mapped in `INCLUDES` (e.g. `OF` → CY, MR, EE, EF); when a package is marked Must have or Flexible, those option lines gray out and read "Included in OF." The PC (special color) line is generated automatically from the extra-cost colors available on that code, with price from the `PC` map.
 
 Long option lists (more than 10 lines) switch to a compact row height so an SR5 CrewMax with 24 lines still prints on one page.
 
-Source: `engage.toyota.com` — `/api/vehicle/optionsPackages/<series>/2026`, `/api/vapi/getVehicleColors`, and `/api/vapi/getVehicleData` (model code list). Pulled Sep 27, 2026.
+Source: `engage.toyota.com` — `/api/vehicle/optionsPackages/<series>/<year>`, `/api/vapi/getVehicleColors`, and `/api/vapi/getVehicleData` (model code list). Pulled Sep 27, 2026.
