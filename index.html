@@ -116,6 +116,14 @@
   th.must,th.flex,th.no{width:68px;letter-spacing:0;font-size:8pt}
   td.c{width:68px}
   td.price,th:nth-child(5){width:68px}
+  .ppo-q{width:100%;font:inherit;font-size:10pt;border:none;background:transparent;outline:none;padding:0 2px;color:var(--ink)}
+  .ppo-q::placeholder{color:#B8B8B8}
+  .ppo-d{display:none}
+  tr.ppo.set .ppo-q{display:none}
+  tr.ppo.set .ppo-d{display:inline}
+  .ppo-x{border:none;color:#BBB;font-size:12px;line-height:12px;cursor:pointer;visibility:hidden}
+  tr.ppo.set .ppo-x{visibility:visible}
+  @media print{ .ppo-q{display:none} .ppo-d{display:inline} .ppo-x{display:none} }
 </style>
 </head>
 <body>
@@ -165,11 +173,16 @@
     <tbody id="fio"></tbody>
   </table>
 
-  <h2>Post Production Options (PPO) &amp; Dealer Installed Options (DIO)</h2>
+  <h2>Post Production Options (PPO) &amp; Dealer Installed Options (DIO) <span id="ppohint">Search by code or description</span></h2>
+  <datalist id="ppolist"></datalist>
   <table>
-    <tr><td class="code w"></td><td class="gap"></td><td class="w"></td><td class="gap"></td><td class="code w"></td><td class="gap"></td><td class="w"></td></tr>
-    <tr><td class="code w"></td><td class="gap"></td><td class="w"></td><td class="gap"></td><td class="code w"></td><td class="gap"></td><td class="w"></td></tr>
-    <tr><td class="code w"></td><td class="gap"></td><td class="w"></td><td class="gap"></td><td class="code w"></td><td class="gap"></td><td class="w"></td></tr>
+    <tr><th style="width:70px;text-align:center">Code</th><th style="width:20px"></th><th style="width:auto;text-align:center">Option</th><th style="width:20px"></th><th style="width:68px;text-align:center">MSRP</th><th style="width:24px"></th></tr>
+    <tr class="ppo"><td class="code w" contenteditable="true"></td><td class="gap"></td><td class="w"><input class="ppo-q" list="ppolist" placeholder="Search by code or description"><span class="ppo-d" contenteditable="true"></span></td><td class="gap"></td><td class="w price" contenteditable="true"></td><td class="c"><span class="box ppo-x" title="Clear">×</span></td></tr>
+    <tr class="ppo"><td class="code w" contenteditable="true"></td><td class="gap"></td><td class="w"><input class="ppo-q" list="ppolist" placeholder="Search by code or description"><span class="ppo-d" contenteditable="true"></span></td><td class="gap"></td><td class="w price" contenteditable="true"></td><td class="c"><span class="box ppo-x" title="Clear">×</span></td></tr>
+    <tr class="ppo"><td class="code w" contenteditable="true"></td><td class="gap"></td><td class="w"><input class="ppo-q" list="ppolist" placeholder="Search by code or description"><span class="ppo-d" contenteditable="true"></span></td><td class="gap"></td><td class="w price" contenteditable="true"></td><td class="c"><span class="box ppo-x" title="Clear">×</span></td></tr>
+    <tr class="ppo"><td class="code w" contenteditable="true"></td><td class="gap"></td><td class="w"><input class="ppo-q" list="ppolist" placeholder="Search by code or description"><span class="ppo-d" contenteditable="true"></span></td><td class="gap"></td><td class="w price" contenteditable="true"></td><td class="c"><span class="box ppo-x" title="Clear">×</span></td></tr>
+    <tr class="ppo"><td class="code w" contenteditable="true"></td><td class="gap"></td><td class="w"><input class="ppo-q" list="ppolist" placeholder="Search by code or description"><span class="ppo-d" contenteditable="true"></span></td><td class="gap"></td><td class="w price" contenteditable="true"></td><td class="c"><span class="box ppo-x" title="Clear">×</span></td></tr>
+    <tr class="ppo"><td class="code w" contenteditable="true"></td><td class="gap"></td><td class="w"><input class="ppo-q" list="ppolist" placeholder="Search by code or description"><span class="ppo-d" contenteditable="true"></span></td><td class="gap"></td><td class="w price" contenteditable="true"></td><td class="c"><span class="box ppo-x" title="Clear">×</span></td></tr>
   </table>
 
   <h2>Timing and price</h2>
@@ -215,7 +228,7 @@
     </div>
     <div class="row">
       <div class="f"><label>FIO codes</label><div class="line" id="dFio"></div></div>
-      <div class="f"><label>PIO codes</label><div class="line"></div></div>
+      <div class="f"><label>PIO codes</label><div class="line" id="dPio"></div></div>
     </div>
     <div class="row">
       <div class="f"><label>Partial payment received</label><div class="line"></div></div>
@@ -231,6 +244,7 @@
 </div>
 
 <script>
+const PPO = {"4Runner": [["2B", "Door Panel Scuff Protectors (Protective Cover for Door Interior)", "$135"], ["3T", "Cross Bars", "$420"], ["43", "Rear Cargo Lamp", "$375"], ["46", "TRD Performance Cat-Back Exhaust", "$1,395"], ["4F", "Rear Recovery Hooks", "$135"], ["5Q", "Rear Differential Skid Plate", "$425"], ["63", "All-Weather Floor Liners", "$248"], ["8F", "Front Tow Hooks", "$180"], ["9V", "Side Storage LED Lantern", "$160"], ["D5", "Door Edge Guards", "$150"], ["F6", "Red Heritage Grill Letter Overlay", "$189"], ["R2", "Oval Tube Steps: Black", "$675"], ["R5", "All-Weather Cargo Mat", "$140"], ["T4", "Toyota Logo Black Badge Overlay", "$65"], ["T7", "Matte Black TOYOTA Badge Tailgate Insert", "$65"], ["W0", "TRD 18-In. Wheel: Black (Includes 4 Wheels)", "$1,325"]], "C-HR": [["2T", "All-Weather Floor Liner Package", "$464"], ["MF", "Mudguards", "$210"]], "Camry": [["2T", "All-Weather Floor Liner Package", "$319"], ["3J", "Blackout Emblem Overlays SE/XSE", "$89"], ["3Y", "Rear Bumper Applique", "$69"], ["93", "19\" Dark Grey Metallic Wheels (4 wheels)", "$1,500"], ["9L", "19\" Gloss Black Wheels (4 Wheels)", "$1,500"], ["D5", "Door Edge Guards", "$168"], ["G4", "Illuminated Door Sills", "$415"], ["G5", "Illuminated Cargo Sills", "$450"], ["MF", "Mudguards", "$173"], ["RF", "Rear Spoiler", "$145"], ["UN", "Accent Lamp Package", "$399"]], "Corolla": [["2T", "All-Weather Floor Liner Package", "$309"], ["87", "Multimedia Screen Protector", "$105"], ["BM", "Body Side Moldings", "$267"], ["D5", "Door Edge Guards", "$168"], ["GD", "Frameless Homelink Mirror", "$175"], ["MF", "Mudguards", "$160"]], "Corolla Cross": [["2T", "All-Weather Floor Liner Package", "$309"], ["3P", "Paint Protection Film: Hood, Fenders, Mirror Backs & Door Cups", "$439"], ["3Y", "Rear Bumper Protector", "$89"], ["MF", "Mudguards", "$160"]], "Corolla Hatchback": [["2T", "All-Weather Floor Liner Package", "$309"], ["B0", "Blackout Package", "$224"], ["BM", "Body Side Moldings", "$267"], ["J7", "Rear Lip Spoiler", "$795"], ["MF", "Mudguards", "$160"]], "Crown": [["2T", "All-Weather Floor Liner Package", "$319"], ["MF", "Mudguards", "$165"]], "Crown Signia": [["2T", "All-Weather Floor Liner Package", "$319"], ["MF", "Mudguards", "$175"]], "GR86": [["12", "GR Wheel Package", "$2,330"], ["2T", "All-Weather Mat Package", "$309"], ["37", "GR Performance Dual Exhaust: Black", "$1,730"], ["KG", "GR Key Gloves", "$23"]], "Grand Highlander": [["2T", "All-Weather Floor Liner Package", "$388"], ["3C", "Blackout Emblem Overlays and Nameplate Overlay (Rear)", "$258"], ["3P", "Paint Protection Film: Hood, Fenders, Mirror Backs & Door Cups", "$439"], ["3T", "Cross Bar Kit", "$325"], ["43", "Rear Hatch Cargo Lamps", "$350"], ["87", "Toyota Multimedia Screen Protector", "$105"], ["BM", "Body Side Moldings", "$280"], ["D5", "Door Edge Guards", "$165"], ["DH", "Tow Hitch Receiver Package", "$930"], ["FL", "20\" Black Satin Wheels", "$1,600"], ["G4", "Illuminated Door Sills", "$395"], ["J6", "Illuminated Cargo Sills", "$345"], ["MF", "Mudguards", "$160"], ["PL", "Logo Side Puddle Lamp", "$175"], ["V1", "Integrated Dashcam", "$499"], ["WL", "Alloy Wheel Locks", "$105"]], "Highlander": [["2T", "All-Weather Floor Liner Package", "$388"], ["3P", "Paint Protection Film: Hood, Fenders, Mirror Backs and Door Cups", "$439"], ["BM", "Body Side Moldings", "$260"], ["DH", "Tow Hitch Receiver Package", "$759"], ["EF", "Rear Bumper Applique: Clear", "$80"], ["V1", "Integrated Dashcam", "$375"]], "Land Cruiser": [["5A", "Cargo Cover", "$220"], ["62", "All-Weather Cargo Mat", "$140"], ["6E", "Black Badge Overlay: i-FORCE MAX", "$75"], ["BM", "Body Side Moldings", "$277"], ["D5", "Door Edge Guards", "$168"], ["FS", "Skid Plate Package", "$905"], ["G4", "Illuminated Door Sills", "$415"], ["WK", "Alloy Wheel Locks: Black Chrome", "$105"]], "Prius": [["2T", "All-Weather Floor Liner Package", "$319"], ["62", "All-Weather Cargo Mat", "$130"], ["63", "All-Weather Floor Liners", "$189"], ["BM", "Body Side Molding", "$277"], ["D1", "Door Sill Applique", "$100"], ["D5", "Door Edge Guards", "$168"], ["EF", "Rear Bumper Applique", "$69"], ["MF", "Mudguards", "$165"]], "Prius Plug-in Hybrid": [["2T", "All-Weather Floor Liner Package", "$319"]], "RAV4": [["1Y", "Connected Services Trial: 2 add'l yrs Drive Connect & Remote Connect", "$325"], ["2B", "Door Panel Scuff Protectors", "$130"], ["2T", "All-Weather Liner Package", "$339"], ["3J", "Blackout Emblem Overlays", "$89"], ["43", "Rear Cargo Lamps", "$425"], ["4A", "Illumination Package", "$1,150"], ["63", "All-Weather Floor Liners", "$199"], ["BM", "Body Side Moldings", "$260"], ["C4", "Carpet Floor Mats", "$199"], ["D5", "Door Edge Guards", "$165"], ["EG", "Rear Bumper Protector", "$130"], ["G4", "Illuminated Door Sills", "$395"], ["MF", "Mudguards", "$160"], ["Z2", "Preferred Accessory Package w/ All-Weather Floor Liners", "$434"]], "RAV4 Plug-in Hybrid": [["2T", "All-Weather Liner Package", "$339"], ["3J", "Blackout Emblem Overlays", "$65"], ["43", "Rear Cargo Lamp", "$425"], ["4A", "Illumination Package", "$725"], ["8J", "Full Graphics Package: Gray or Black", "$600"], ["BM", "Body Side Moldings", "$260"], ["D5", "Door Edge Guards", "$165"], ["D9", "Door Sill Protectors", "$199"], ["E7", "NACS to CCS1 Adapter", "$200"], ["EG", "Rear Bumper Protector", "$130"], ["MF", "Mudguards", "$160"]], "Sequoia": [["2T", "All-Weather Floor Liner Package", "$388"], ["63", "All-Weather Floor Liners", "$248"], ["D5", "Door Edge Guards", "$150"], ["T5", "Reflect Black Heritage Grill Letter Overlay", "$285"]], "Sienna": [["2G", "All-Weather Floor Liners (models w/ Vacuum & FridgeBox)", "$270"], ["2T", "All-Weather Floor Liners", "$270"], ["BM", "Body Side Moldings", "$260"], ["D9", "Door Sill Protectors", "$95"], ["DH", "Tow Hitch Receiver w/ Wire Harness", "$955"], ["MF", "Mudguards", "$160"], ["WL", "Alloy Wheel Locks", "$90"]], "Tacoma": [["2T", "All-Weather Floor Liners", "$199"], ["87", "Toyota Multimedia Screen Protector", "$105"], ["9K", "Bed Scene Lighting", "$599"], ["D5", "Door Edge Guards", "$165"], ["L5", "Spray-On Bedliner", "$575"], ["MF", "Mudguards", "$165"], ["Q4", "Rigid Fog Lights: White", "$680"], ["RO", "USB Rear Power Port", "$129"], ["T6", "Tailgate Insert: Black", "$89"]], "Tundra": [["2T", "All-Weather Floor Liners", "$199"], ["3E", "Chrome Front Bumper Insert", "$99"], ["3J", "Blackout Emblem Overlays", "$160"], ["3P", "Paint Protection Film: Hood, Fenders, Door Cups & Mirror Backs", "$439"], ["87", "Multimedia Screen Protector - Glass", "$105"], ["88", "TRD 20\" Wheel Package", "$2,035"], ["8Q", "BedStep", "$431"], ["D5", "Door Edge Guards: Stainless Steel", "$165"], ["E6", "Exhaust Tip: Black Chrome", "$132"], ["LB", "Spray-On Bedliner", "$599"], ["PH", "TRD Performance Package", "$2,999"], ["R4", "TRD Cast Aluminum Running Boards", "$1,219"], ["T7", "Tailgate Insert Badge: Black", "$89"], ["W1", "Toyota Wireless Trailer Camera System", "$800"]], "bZ": [["2T", "All-Weather Floor Liner Package", "$339"], ["3K", "Black Emblem Overlays", "$95"], ["BM", "Body Side Moldings", "$267"], ["D5", "Door Edge Guards", "$168"], ["G4", "Illuminated Door Sills", "$415"], ["MF", "Mudguards", "$165"]], "bZ Woodland": [["3Y", "Rear Bumper Protector", "$89"], ["87", "Multimedia Screen Protector", "$105"]]};
 const DATA = {
   "Corolla Cross": { year: 2026, byCode: true, EXT: { "0D11":"Jet Black", "0D10":"Sonic Silver", "01K3":"Celestite", "08W2":"Cavalry Blue", "06X5":"Cypress", "0089":"Wind Chill Pearl*", "0D25":"Soul Red Crystal*", "0D23":"Wind Chill/Jet Black roof*", "0D17":"Sonic Silver/Jet Black roof*", "0D22":"Cavalry Blue/Jet Black roof*", "0D28":"Soul Red/Jet Black roof*" }, INT: { "FA10":"Light Gray Fabric", "FA20":"Black Fabric", "FB11":"Gray/Black Fabric", "FB20":"Black Fabric w/Smoke Silver", "EA20":"Black SofTex", "EA23":"Portobello SofTex", "EB20":"Black SofTex/Fabric", "EB21":"Black/Blue SofTex/Fabric" },
     extBy: {"0089": [6305, 6306, 6304, 6303, 6302, 6301, 6312, 6314, 6316], "0D10": [6305, 6306, 6304, 6303, 6302, 6301, 6312, 6314, 6316], "01K3": [6305, 6306, 6304, 6303, 6302, 6301, 6312, 6314, 6316], "08W2": [6305, 6306, 6304, 6303, 6314, 6316], "0D25": [6305, 6306, 6304, 6303, 6314, 6316], "06X5": [6305, 6306, 6304, 6303], "0D11": [6305, 6306, 6304, 6303, 6302, 6301, 6312, 6314, 6316], "0D23": [6314, 6316], "0D17": [6314, 6316], "0D22": [6314, 6316], "0D28": [6314, 6316]},
@@ -801,11 +815,26 @@ mSel.add(new Option('Select model',''));
 ['4Runner','bZ','bZ Woodland','C-HR','Camry','Corolla','Corolla Cross','Corolla Hatchback','Crown','Crown Signia','GR Corolla','GR86','Grand Highlander','Highlander','Land Cruiser','Prius','Prius Plug-in Hybrid','RAV4','RAV4 Plug-in Hybrid','Sequoia','Sienna','Tacoma','Tundra'].forEach(function(m){ if(DATA[m]) mSel.add(new Option(m, m)); });
 function wire(){
   Array.prototype.forEach.call(document.querySelectorAll('.line:not(#today):not(#vyear):not(#vmodel):not(#vtrim):not(#vcode), td.w'), function(el){ el.setAttribute('contenteditable','true'); });
-  Array.prototype.forEach.call(document.querySelectorAll('.box'), function(b){ if(!b.dataset.w){ b.dataset.w=1; b.addEventListener('click',function(){ if(b.classList.contains('dis')||b.classList.contains('lock')) return; b.classList.toggle('on'); b.textContent = b.classList.contains('on') ? '\u2713' : ''; applyIncludes(); applyNo(); fillDealer(); }); } });
+  Array.prototype.forEach.call(document.querySelectorAll('.box:not(.ppo-x)'), function(b){ if(!b.dataset.w){ b.dataset.w=1; b.addEventListener('click',function(){ if(b.classList.contains('dis')||b.classList.contains('lock')) return; b.classList.toggle('on'); b.textContent = b.classList.contains('on') ? '\u2713' : ''; applyIncludes(); applyNo(); fillDealer(); }); } });
 }
 (function(){ var d=new Date(); document.getElementById('today').textContent=(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear(); })();
 const PCCOLORS = {"01L5":1,"03T3":1,"0089":1,"03U5":1,"0M73":1,"0796":1,"0M22":1,"02SQ":1,"02VP":1,"02TB":1,"08Z3":1,"02YJ":1,"02PS":1,"0M04":1,"02SC":1,"0M93":1,"0MA3":1,"0MA4":1,"0MA5":1,"0MA6":1,"0M87":1,"0MA7":1,"0D29":1,"0M67":1,"02YY":1,"03U9":1,"0M71":1,"02ZR":1,"0MA0":1,"0MA1":1,"0MA2":1,"0090":1,"0228":1,"02XW":1,"02XY":1,"02XZ":1,"02ZA":1,"02ZC":1,"02ZD":1,"04Y6":1,"0D17":1,"0D22":1,"0D23":1,"0D25":1,"0D28":1,"0DCK":1,"0K1X":1};
 function setBox(b,on){ b.classList.toggle('on',on); b.textContent = on ? '\u2713' : ''; }
+function fillPPO(){
+  var list=document.getElementById('ppolist'); list.innerHTML='';
+  var items = PPO[mSel.value]||[];
+  items.forEach(function(it){ var o=document.createElement('option'); o.value=it[0]+' \u2014 '+it[1]+' \u2014 '+it[2]; list.appendChild(o); });
+  document.getElementById('ppohint').textContent = items.length ? items.length+' options on file \u2014 search by code or description' : 'Search by code or description';
+  Array.prototype.forEach.call(document.querySelectorAll('tr.ppo'), function(tr){
+    var q=tr.querySelector('.ppo-q'); if(q.dataset.w) return; q.dataset.w=1;
+    var apply=function(){ var v=q.value.trim(); if(!v) return; var items=PPO[mSel.value]||[];
+      var hit=items.find(function(it){ return v===it[0]+' \u2014 '+it[1]+' \u2014 '+it[2]; }) || items.find(function(it){ return v.toUpperCase()===it[0]; }) || items.find(function(it){ return it[1].toLowerCase()===v.toLowerCase(); });
+      if(!hit) return;
+      tr.querySelector('td.code').textContent=hit[0]; tr.querySelector('td.code').classList.add('fill'); tr.querySelector('.ppo-d').textContent=hit[1]; tr.querySelector('td.price').textContent=hit[2]; tr.classList.add('set'); q.value=''; fillDealer(); };
+    q.addEventListener('change',apply); q.addEventListener('keydown',function(e){ if(e.key==='Enter'){ e.preventDefault(); apply(); } });
+    tr.querySelector('.ppo-x').addEventListener('click',function(){ tr.classList.remove('set'); tr.querySelector('td.code').textContent=''; tr.querySelector('td.code').classList.remove('fill'); tr.querySelector('.ppo-d').textContent=''; tr.querySelector('td.price').textContent=''; fillDealer(); });
+  });
+}
 function fillDealer(){
   var mc = (cSel.value||'').split(' ')[0];
   document.getElementById('dModel').textContent = mc;
@@ -817,6 +846,8 @@ function fillDealer(){
   Array.prototype.forEach.call(document.querySelectorAll('#fio tr'), function(tr){ var c=tr.querySelector('td.code'); if(!c||!c.textContent.trim()) return; var bx=tr.querySelectorAll('.box'); if(bx.length<2) return;
     if(bx[0].classList.contains('on')) must.push(c.textContent.trim()); else if(bx[1].classList.contains('on')) flex.push(c.textContent.trim()); });
   document.getElementById('dFio').textContent = must.join(' ') + (flex.length ? (must.length?'   ':'')+'Flexible: '+flex.join(' ') : '');
+  var pio=[]; Array.prototype.forEach.call(document.querySelectorAll('tr.ppo td.code'), function(td){ var c=td.textContent.trim(); if(c) pio.push(c); });
+  document.getElementById('dPio').textContent = pio.join(' ');
 }
 function applyNo(){
   Array.prototype.forEach.call(document.querySelectorAll('#fio tr'), function(tr){
@@ -883,6 +914,7 @@ function blank(){
   wire();
 }
 function fillTrims(){
+  fillPPO();
   tSel.innerHTML=''; tSel.add(new Option('Select trim',''));
   if (mSel.value) Object.keys(DATA[mSel.value].trims).forEach(function(t){ tSel.add(new Option(t,t)); });
   fillCodes();
