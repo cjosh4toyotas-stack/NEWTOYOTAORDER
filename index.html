@@ -183,12 +183,12 @@
   <h2>Post Production Options (PPO) &amp; Dealer Installed Options (DIO) <span id="ppohint">Search by code or description</span></h2>
   <table>
     <tr><th style="width:70px;text-align:center">Code</th><th style="width:20px"></th><th style="width:auto;text-align:center">Option</th><th style="width:20px"></th><th style="width:68px;text-align:center">MSRP</th><th style="width:24px"></th></tr>
-    <tr class="ppo"><td class="code w" contenteditable="true"></td><td class="gap"></td><td class="w"><input class="ppo-q" placeholder="Type a code or description" autocomplete="off"><span class="ppo-d" contenteditable="true"></span></td><td class="gap"></td><td class="w price" contenteditable="true"></td><td class="c"><span class="box ppo-x" title="Clear">×</span></td></tr>
-    <tr class="ppo"><td class="code w" contenteditable="true"></td><td class="gap"></td><td class="w"><input class="ppo-q" placeholder="Type a code or description" autocomplete="off"><span class="ppo-d" contenteditable="true"></span></td><td class="gap"></td><td class="w price" contenteditable="true"></td><td class="c"><span class="box ppo-x" title="Clear">×</span></td></tr>
-    <tr class="ppo"><td class="code w" contenteditable="true"></td><td class="gap"></td><td class="w"><input class="ppo-q" placeholder="Type a code or description" autocomplete="off"><span class="ppo-d" contenteditable="true"></span></td><td class="gap"></td><td class="w price" contenteditable="true"></td><td class="c"><span class="box ppo-x" title="Clear">×</span></td></tr>
-    <tr class="ppo"><td class="code w" contenteditable="true"></td><td class="gap"></td><td class="w"><input class="ppo-q" placeholder="Type a code or description" autocomplete="off"><span class="ppo-d" contenteditable="true"></span></td><td class="gap"></td><td class="w price" contenteditable="true"></td><td class="c"><span class="box ppo-x" title="Clear">×</span></td></tr>
-    <tr class="ppo"><td class="code w" contenteditable="true"></td><td class="gap"></td><td class="w"><input class="ppo-q" placeholder="Type a code or description" autocomplete="off"><span class="ppo-d" contenteditable="true"></span></td><td class="gap"></td><td class="w price" contenteditable="true"></td><td class="c"><span class="box ppo-x" title="Clear">×</span></td></tr>
-    <tr class="ppo"><td class="code w" contenteditable="true"></td><td class="gap"></td><td class="w"><input class="ppo-q" placeholder="Type a code or description" autocomplete="off"><span class="ppo-d" contenteditable="true"></span></td><td class="gap"></td><td class="w price" contenteditable="true"></td><td class="c"><span class="box ppo-x" title="Clear">×</span></td></tr>
+    <tr class="ppo"><td class="code w" contenteditable="true"></td><td class="gap"></td><td class="w"><input class="ppo-q" placeholder="Code or description" autocomplete="off"><span class="ppo-d" contenteditable="true"></span></td><td class="gap"></td><td class="w price" contenteditable="true"></td><td class="c"><span class="box ppo-x" title="Clear">×</span></td></tr>
+    <tr class="ppo"><td class="code w" contenteditable="true"></td><td class="gap"></td><td class="w"><input class="ppo-q" placeholder="Code or description" autocomplete="off"><span class="ppo-d" contenteditable="true"></span></td><td class="gap"></td><td class="w price" contenteditable="true"></td><td class="c"><span class="box ppo-x" title="Clear">×</span></td></tr>
+    <tr class="ppo"><td class="code w" contenteditable="true"></td><td class="gap"></td><td class="w"><input class="ppo-q" placeholder="Code or description" autocomplete="off"><span class="ppo-d" contenteditable="true"></span></td><td class="gap"></td><td class="w price" contenteditable="true"></td><td class="c"><span class="box ppo-x" title="Clear">×</span></td></tr>
+    <tr class="ppo"><td class="code w" contenteditable="true"></td><td class="gap"></td><td class="w"><input class="ppo-q" placeholder="Code or description" autocomplete="off"><span class="ppo-d" contenteditable="true"></span></td><td class="gap"></td><td class="w price" contenteditable="true"></td><td class="c"><span class="box ppo-x" title="Clear">×</span></td></tr>
+    <tr class="ppo"><td class="code w" contenteditable="true"></td><td class="gap"></td><td class="w"><input class="ppo-q" placeholder="Code or description" autocomplete="off"><span class="ppo-d" contenteditable="true"></span></td><td class="gap"></td><td class="w price" contenteditable="true"></td><td class="c"><span class="box ppo-x" title="Clear">×</span></td></tr>
+    <tr class="ppo"><td class="code w" contenteditable="true"></td><td class="gap"></td><td class="w"><input class="ppo-q" placeholder="Code or description" autocomplete="off"><span class="ppo-d" contenteditable="true"></span></td><td class="gap"></td><td class="w price" contenteditable="true"></td><td class="c"><span class="box ppo-x" title="Clear">×</span></td></tr>
   </table>
 
   <h2>Timing and price</h2>
@@ -828,7 +828,7 @@ const PCCOLORS = {"01L5":1,"03T3":1,"0089":1,"03U5":1,"0M73":1,"0796":1,"0M22":1
 function setBox(b,on){ b.classList.toggle('on',on); b.textContent = on ? '\u2713' : ''; }
 function fillPPO(){
   var items = PPO[mSel.value]||[];
-  document.getElementById('ppohint').textContent = items.length ? items.length+' options on file \u2014 type a code or description' : 'Type a code or description';
+  document.getElementById('ppohint').textContent = items.length ? items.length+' options on file \u2014 enter the 2-digit code or type a description' : 'Enter the 2-digit code or type a description';
   Array.prototype.forEach.call(document.querySelectorAll('tr.ppo'), function(tr){
     var q=tr.querySelector('.ppo-q'); if(q.dataset.w) return; q.dataset.w=1;
     var cell=q.parentNode, menu=document.createElement('div'); menu.className='ppo-menu'; cell.appendChild(menu);
@@ -841,6 +841,8 @@ function fillPPO(){
       var used={}; Array.prototype.forEach.call(document.querySelectorAll('tr.ppo td.code'), function(td){ var c=td.textContent.trim(); if(c) used[c]=1; });
       hits = items.filter(function(it){ return !used[it[0]] && (it[0].toLowerCase().indexOf(v)===0 || it[1].toLowerCase().indexOf(v)>=0); });
       hits.sort(function(a,b){ var ac=a[0].toLowerCase().indexOf(v)===0, bc=b[0].toLowerCase().indexOf(v)===0; return ac===bc ? 0 : (ac ? -1 : 1); });
+      var exact = items.find(function(it){ return !used[it[0]] && it[0].toLowerCase()===v; });
+      if(exact && v.length>=2){ setRow(exact); return; }
       cur = hits.length ? 0 : -1; draw(); };
     q.addEventListener('input',search); q.addEventListener('focus',search);
     q.addEventListener('blur',function(){ setTimeout(function(){ menu.style.display='none'; },150); });
@@ -848,6 +850,9 @@ function fillPPO(){
       else if(e.key==='ArrowUp'){ e.preventDefault(); if(hits.length){ cur=(cur-1+hits.length)%hits.length; draw(); } }
       else if(e.key==='Enter'||e.key==='Tab'){ if(cur>=0 && hits[cur]){ e.preventDefault(); setRow(hits[cur]); } }
       else if(e.key==='Escape'){ menu.style.display='none'; } });
+    var codeCell=tr.querySelector('td.code');
+    codeCell.addEventListener('input',function(){ var v=codeCell.textContent.trim().toUpperCase(); if(v.length<2) return; var items=PPO[mSel.value]||[]; var hit=items.find(function(it){ return it[0]===v; }); if(hit){ setRow(hit); codeCell.blur(); } });
+    codeCell.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key==='Tab'){ var v=codeCell.textContent.trim().toUpperCase(); var items=PPO[mSel.value]||[]; var hit=items.find(function(it){ return it[0]===v; }); if(hit){ e.preventDefault(); setRow(hit); } } });
     tr.querySelector('.ppo-x').addEventListener('click',function(){ tr.classList.remove('set'); tr.querySelector('td.code').textContent=''; tr.querySelector('td.code').classList.remove('fill'); tr.querySelector('.ppo-d').textContent=''; tr.querySelector('td.price').textContent=''; fillDealer(); });
   });
 }
