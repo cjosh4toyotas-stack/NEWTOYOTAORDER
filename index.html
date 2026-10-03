@@ -133,6 +133,9 @@
   @media print{ .ppo-menu{display:none !important} }
   [data-auto]{color:#004B8D;font-weight:bold}
   .init .line[data-auto],.steps li .line[data-auto]{text-align:center}
+  .dc i{font-style:normal;color:var(--mid);font-size:10pt;margin:0 4px 0 8px}
+  .dc label + i{margin-left:0}
+  .dc .line{text-align:center;min-width:0}
   #stepDone.on{color:#004B8D;border-color:#004B8D}
   .opts > span.off{color:#B5B5B5}
   .opts > span.off .box{border-color:#CCC}
@@ -233,9 +236,9 @@
   <div class="dealer">
     <h2>Dealership use only</h2>
     <div class="row">
-      <div class="f"><label>Model code</label><div class="line" id="dModel"></div></div>
-      <div class="f"><label>Ext. codes 1 · 2 · 3</label><div class="line" id="dExt"></div></div>
-      <div class="f"><label>Int. codes 1 · 2</label><div class="line" id="dInt"></div></div>
+      <div class="f" style="flex:0 0 auto"><label>Model code</label><div class="line" id="dModel" style="flex:0 0 52px;text-align:center"></div></div>
+      <div class="f dc" style="flex:3"><label>Ext. codes</label><i>1</i><div class="line dExt"></div><i>2</i><div class="line dExt"></div><i>3</i><div class="line dExt"></div></div>
+      <div class="f dc" style="flex:2"><label>Int. codes</label><i>1</i><div class="line dInt"></div><i>2</i><div class="line dInt"></div></div>
     </div>
     <div class="row">
       <div class="f"><label>FIO codes</label><div class="line" id="dFio"></div></div>
@@ -891,10 +894,8 @@ function fillPPO(){
 function fillDealer(){
   var mc = (cSel.value||'').split(' ')[0];
   document.getElementById('dModel').textContent = mc;
-  var ext=[], intr=[];
-  Array.prototype.forEach.call(document.querySelectorAll('select.cs'), function(sel){ if(sel.value) (sel.dataset.kind==='ext'?ext:intr).push(sel.value); });
-  document.getElementById('dExt').textContent = ext.join(' · ');
-  document.getElementById('dInt').textContent = intr.join(' · ');
+  ['ext','int'].forEach(function(k){ var sels=document.querySelectorAll('select.cs[data-kind="'+k+'"]'), lines=document.querySelectorAll(k==='ext'?'.dExt':'.dInt');
+    Array.prototype.forEach.call(lines, function(l,i){ l.textContent = sels[i] ? sels[i].value : ''; }); });
   var must=[], flex=[];
   Array.prototype.forEach.call(document.querySelectorAll('#fio tr'), function(tr){ var c=tr.querySelector('td.code'); if(!c||!c.textContent.trim()) return; var bx=tr.querySelectorAll('.box'); if(bx.length<2) return;
     if(bx[0].classList.contains('on')) must.push(c.textContent.trim()); else if(bx[1].classList.contains('on')) flex.push(c.textContent.trim()); });
@@ -960,7 +961,8 @@ function fillColors(t){
   });
 }
 function blank(){
-  ['vyear','vmodel','vtrim','vcode','dModel','dExt','dInt','dFio'].forEach(function(i){ document.getElementById(i).textContent=''; });
+  ['vyear','vmodel','vtrim','vcode','dModel','dFio'].forEach(function(i){ document.getElementById(i).textContent=''; });
+  Array.prototype.forEach.call(document.querySelectorAll('.dExt,.dInt'), function(l){ l.textContent=''; });
   fillColors(null);
   document.getElementById('fiohint').textContent = 'Lines with available options must be answered to proceed';
   const body = document.getElementById('fio'); body.innerHTML = '';
