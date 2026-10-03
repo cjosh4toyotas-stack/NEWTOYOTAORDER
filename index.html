@@ -134,6 +134,8 @@
   [data-auto]{color:#004B8D;font-weight:bold}
   .init .line[data-auto],.steps li .line[data-auto]{text-align:center}
   #stepDone.on{color:#004B8D;border-color:#004B8D}
+  .opts > span.off{color:#B5B5B5}
+  .opts > span.off .box{border-color:#CCC}
 </style>
 </head>
 <body>
@@ -839,6 +841,8 @@ function linesDone(){
 }
 function autofill(){
   var done=linesDone(), sb=document.getElementById('stepDone');
+  var anyTim=!!document.querySelector('.box.tim.on');
+  Array.prototype.forEach.call(document.querySelectorAll('.box.tim'), function(b){ b.parentNode.classList.toggle('off', anyTim && !b.classList.contains('on')); });
   if(sb && !sb.dataset.manual) setBox(sb,done);
   Array.prototype.forEach.call(document.querySelectorAll('[data-auto]'), function(el){ if(el.dataset.manual) return;
     var k=el.dataset.auto, v='';
@@ -849,6 +853,7 @@ function autofill(){
 }
 Array.prototype.forEach.call(document.querySelectorAll('[data-auto]'), function(el){ el.addEventListener('input',function(){ el.dataset.manual=1; }); });
 document.getElementById('stepDone').addEventListener('click',function(){ this.dataset.manual=1; },true);
+Array.prototype.forEach.call(document.querySelectorAll('.box.tim'), function(b){ b.addEventListener('click',function(){ if(b.classList.contains('on')) return; Array.prototype.forEach.call(document.querySelectorAll('.box.tim'), function(o){ if(o!==b) setBox(o,false); }); },true); });
 document.getElementById('sc').addEventListener('input',autofill);
 document.getElementById('c2').addEventListener('input',autofill);
 const PCCOLORS = {"01L5":1,"03T3":1,"0089":1,"03U5":1,"0M73":1,"0796":1,"0M22":1,"02SQ":1,"02VP":1,"02TB":1,"08Z3":1,"02YJ":1,"02PS":1,"0M04":1,"02SC":1,"0M93":1,"0MA3":1,"0MA4":1,"0MA5":1,"0MA6":1,"0M87":1,"0MA7":1,"0D29":1,"0M67":1,"02YY":1,"03U9":1,"0M71":1,"02ZR":1,"0MA0":1,"0MA1":1,"0MA2":1,"0090":1,"0228":1,"02XW":1,"02XY":1,"02XZ":1,"02ZA":1,"02ZC":1,"02ZD":1,"04Y6":1,"0D17":1,"0D22":1,"0D23":1,"0D25":1,"0D28":1,"0DCK":1,"0K1X":1};
